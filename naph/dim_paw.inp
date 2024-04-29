@@ -24,7 +24,7 @@ hmin -10
 finegrid 0.15  !nfovnr=grid spacing/finegrid
 ekcut -1d0 ! negative values to have paw subroutines to generate
 h_type 1 !0=s^-1h psuedo wfs, 1=s^-1/2hs^-1/2 orthogonal wfs
-flg_bin T
+flg_bin F
 
 
 tddft 0 !-1 just opaw-dft, 0 opaw-dft followed by tddft, 1 read in wfs from wf.txt then do tddft

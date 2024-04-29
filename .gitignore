@@ -1,2 +1,5 @@
 *fort*
 src/opaw_tddft.x
+naph/wf*
+naph/d_dip.dat
+naph/dip.dat
