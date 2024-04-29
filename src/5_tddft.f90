@@ -8,16 +8,16 @@ module tddft_mod
   integer :: ipol !direction of perturbation
   integer :: nstates !total number of states in wf.txt
   integer :: dyn ! 1=static hamiltonian, 2=RPA/TDHF, 3=TDDFT
-  integer :: prop_type ! 1 = debug, 2 = rk4, 3 = split_op
-  integer :: debug_prop_flag
-  integer :: tbar_taylor_power = 50
-  integer :: vbar_taylor_power = 50
+  integer :: prop_type=2! 1 = debug, 2 = rk4, 3 = split_op !LEGACY
+  integer :: debug_prop_flag!LEGACY
+  integer :: tbar_taylor_power = 50!LEGACY
+  integer :: vbar_taylor_power = 50!LEGACY
   integer :: na_node ! divide number of atoms amongst nodes
   !integer :: nfrozen !number of frozen states
   !integer :: nprop !number of propagated states
-  integer :: nvirtual !number of unoccupied states to include for time propagation
+  integer :: nvirtual !number of unoccupied states to include for time propagation 
   integer :: nvirtual_read
-  integer :: n_restart = -1 !every nt step write out wfs so can restart program
+  integer :: n_restart = -1 !every nt step write out wfs so can restart programp
 
   integer :: nc_init
   integer :: nc_vbar
@@ -39,6 +39,6 @@ module tddft_mod
   complex*16, allocatable :: phi_bar_tot(:,:,:,:,:) !phibar=s^1/2 phit
   complex*16, allocatable :: phi_bar_pert(:,:,:,:,:) !perturbed states
   complex*16, allocatable :: phi_bar_tot_pert(:,:,:,:,:) !perturbed states
-  logical :: prop_bar
-  logical :: tddft_stop_print = .false.
+  logical :: prop_bar!LEGACY
+  logical :: tddft_stop_print = .false.!LEGACY
 end module tddft_mod

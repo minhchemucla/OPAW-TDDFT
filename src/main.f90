@@ -266,7 +266,6 @@ contains
 
             call fetch_L (periodic,'periodic',13)
 
-            call fetch_r (mu0    , 'mu',13)
             !dmua is a small shift of the chemical potential to 
             !ensure Filter includes all occupied states
             call fetch_r (dmua   , 'dmua',13)
@@ -281,7 +280,7 @@ contains
             call fetch_i (funct,'funct',13)
 
             call fetch_i (iscf_hminmax,'iscf_hminmax',13)
-            call fetch_i (iscf_start,  'iscf_start'  ,13)
+            !call fetch_i (iscf_start,  'iscf_start'  ,13)
             call fetch_r (hmax_0,'hmax',13)
             call fetch_r (hmin_0,'hmin',13)
 
@@ -301,11 +300,11 @@ contains
               call fetch_r (dt, 'dt', 13)
               call fetch_i(ipol, 'exct_pol',13)
               call fetch_r(sm, 'strength ',13)
-              call fetch_i(prop_type, 'prop_type',13)
+              !call fetch_i(prop_type, 'prop_type',13)
               !call fetch_l(prop_bar, 'prop_bar',13)
-              call fetch_i(debug_prop_flag, 'debug_prop',13)
+              !call fetch_i(debug_prop_flag, 'debug_prop',13)
               call fetch_i(dyn, 'theory',13)
-              call fetch_i(n_restart, 'n_restart',13)
+              !call fetch_i(n_restart, 'n_restart',13)
               !call fetch_i(nvirtual_read, 'nvirtual',13)
               !call fetch_r(pfrozen, 'percent_frozen',13)
 
@@ -370,7 +369,7 @@ contains
         call bcast_scalar_i(funct)
         call bcast_scalar_i(nfovnr)
         call bcast_scalar_i(iscf_hminmax)
-        call bcast_scalar_i(iscf_start)
+        !call bcast_scalar_i(iscf_start)
 
         call bcast_scalar_l(periodic)
         call bcast_scalar_l(diis_dij)
@@ -379,7 +378,7 @@ contains
         call bcast_scalar_r8(dx)
         call bcast_scalar_r8(dy)
         call bcast_scalar_r8(dz)
-        call bcast_scalar_r8(mu0)
+        !call bcast_scalar_r8(mu0)
         call bcast_scalar_r8(dmua)
         call bcast_scalar_r8(mix_diis1)
         call bcast_scalar_r8(mix_diis)
@@ -401,11 +400,11 @@ contains
         call bcast_scalar_i(ipol)
         call bcast_scalar_r8(sm)
         !call bcast_scalar_l(prop_bar)
-        call bcast_scalar_i(prop_type)
-        call bcast_scalar_i(debug_prop_flag)
+        !call bcast_scalar_i(prop_type)
+        !call bcast_scalar_i(debug_prop_flag)
         call bcast_scalar_i(dyn)
         call bcast_scalar_l(flg_bin)
-        call bcast_scalar_i(n_restart)
+        !call bcast_scalar_i(n_restart)
         !call bcast_scalar_i(nvirtual_read)
     end subroutine
 end program main      

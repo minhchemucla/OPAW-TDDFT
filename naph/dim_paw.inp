@@ -4,35 +4,23 @@ nz  32
 box_x	28
 box_y	26
 box_z	16
-
 periodic F
-
-mu 0.0
 dmua 0.1
-
 mix_diis 0.15
 mix_diis1 -1  !if < 0 then no diis for dij
 nscf 30
 funct 0 !0:pwlda, 1:pbe
-
 iscf_hminmax 5 !if < 0 then not update hminmax
-iscf_start 0 
-
 hmax 70
 hmin -10
-
 finegrid 0.15  !nfovnr=grid spacing/finegrid
 ekcut -1d0 ! negative values to have paw subroutines to generate
 h_type 1 !0=s^-1h psuedo wfs, 1=s^-1/2hs^-1/2 orthogonal wfs
 flg_bin F
 
-
-tddft 0 !-1 just opaw-dft, 0 opaw-dft followed by tddft, 1 read in wfs from wf.txt then do tddft
+tddft -1 !-1 just opaw-dft, 0 opaw-dft followed by tddft, 1 read in wfs from wf.txt then do tddft
 nt  10000
 dt 0.05
 exct_pol 1 !1,2,3 -> x,y,z
 strength 1e-3
-prop_type 2 !1=debug, 2=rk4
-debug_prop 2
 theory 3 !1=static H, 2=RPA, 3=TDDFT
-n_restart 0
