@@ -1,0 +1,463 @@
+module grad_div_curl
+  implicit none
+  save
+  real*8, parameter :: sml = 1e-8
+  real*8, allocatable :: t1x(:,:), t1y(:,:), t1z(:,:)
+  integer, parameter :: flg_pt=0 ! use 0 or 3 usually
+  integer iflag_make_t1
+  integer :: iset=0
+  integer nnx, nny, nnz, nnd
+  real*8  ddx,  ddy, ddz
+contains
+  ! call this routine (at least) once.
+  subroutine set_grad_div_curl(nd, nx, ny, nz, dx, dy, dz)
+    integer nx, ny, nz, nd
+    real*8  dx, dy, dz
+    nnd = nd
+    nnx = nx
+    nny = ny
+    nnz = nz
+    ddx = dx
+    ddy = dy
+    ddz = dz
+    iset = 1
+    call make_t1
+  end subroutine set_grad_div_curl
+
+  subroutine make_t1
+    implicit none
+    integer st
+    
+    if(allocated(t1x))deallocate(t1x)
+    if(allocated(t1y))deallocate(t1y)
+    if(allocated(t1z))deallocate(t1z)
+
+    allocate(t1x(nnx,nnx),t1y(nny,nny),t1z(nnz,nnz), stat=st)
+    call check(st,0,' t1st    ')
+    iflag_make_t1 = 1
+
+    call drv1_trm(t1x, nnx, ddx)
+    call drv1_trm(t1y, nny, ddy)
+    call drv1_trm(t1z, nnz, ddz)
+  end subroutine make_t1
+  
+  subroutine c_grad_gen(f, gf, lot)
+    implicit none
+    
+    integer lot
+    integer ix, ixp, iy, iyp, iz, izp
+    
+    complex*16 f(nnx,nny,nnz,lot), gf(nnx,nny,nnz, nnd, lot)
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+    
+    gf = 0.d0
+    
+    do ix=1, nnx
+       do ixp=1, nnx
+          if(abs(t1x(ix, ixp))>sml) then
+          gf(ix ,:,:, 1, :) = &
+               gf(ix ,:,:, 1, :) + &
+               t1x(ix, ixp)      * &
+               f(ixp,:,:,  :) 
+          endif
+       enddo
+    enddo
+    
+    do iy=1, nny
+       do iyp=1, nny
+          if(abs(t1y(iy, iyp))>sml)then
+          gf(:, iy ,:, 2, :) = &
+               gf(:, iy ,:, 2, :) + &
+               t1y(iy, iyp)      * &
+               f(:, iyp,:,  :) 
+          endif
+       enddo
+    enddo
+    
+    do iz=1, nnz
+       do izp=1, nnz
+          if(abs(t1z(iz,izp))>sml) then
+          gf(:, :, iz , 3, :) = &
+               gf(:, :, iz , 3, :) + &
+               t1z(iz, izp)      * &
+               f(:, :, izp,  :) 
+          endif
+       enddo
+    enddo
+    
+  end subroutine c_grad_gen
+
+  subroutine r_grad_gen(f, gf, lot)
+    implicit none
+    
+    integer lot
+    integer ix, ixp, iy, iyp, iz, izp
+    
+    real*8 f(nnx,nny,nnz,lot), gf(nnx,nny,nnz, nnd, lot)
+    
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+
+    gf = 0.d0
+    
+    do ix=1, nnx
+       do ixp=1, nnx
+          gf(ix ,:,:, 1, :) = &
+               gf(ix ,:,:, 1, :) + &
+               t1x(ix, ixp)      * &
+               f(ixp,:,:,  :) 
+       enddo
+    enddo
+    
+    do iy=1, nny
+       do iyp=1, nny
+          gf(:, iy ,:, 2, :) = &
+               gf(:, iy ,:, 2, :) + &
+               t1y(iy, iyp)      * &
+               f(:, iyp,:,  :) 
+       enddo
+    enddo
+    
+    do iz=1, nnz
+       do izp=1, nnz
+          gf(:, :, iz , 3, :) = &
+               gf(:, :, iz , 3, :) + &
+               t1z(iz, izp)      * &
+               f(:, :, izp,  :) 
+       enddo
+    enddo
+    
+  end subroutine r_grad_gen
+  
+  subroutine r_grad_gen2(f, gf, lot)
+    implicit none
+    
+    integer lot
+    integer ix, ixp, iy, iyp, iz, izp
+    
+    real*8 f(nnx,nny,nnz,lot), gf(nnx,nny,nnz, nnd, lot)
+    
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+
+    gf = 0.d0
+    
+    do ix=1, nnx
+       do ixp=1, nnx
+          gf(ix ,:,:, 1, :) = &
+               gf(ix ,:,:, 1, :) + &
+               t1x(ix, ixp)      * &
+               f(ixp,:,:,  :) 
+       enddo
+    enddo
+    
+    do iy=1, nny
+       do iyp=1, nny
+          gf(:, iy ,:, 2, :) = &
+               gf(:, iy ,:, 2, :) + &
+               t1y(iy, iyp)      * &
+               f(:, iyp,:,  :) 
+       enddo
+    enddo
+    
+    do iz=1, nnz
+       do izp=1, nnz
+          gf(:, :, iz , 3, :) = &
+               gf(:, :, iz , 3, :) + &
+               t1z(iz, izp)      * &
+               f(:, :, izp,  :) 
+       enddo
+    enddo
+    
+  end subroutine r_grad_gen2
+  
+  subroutine r_div_gen(vec, div, lot)
+    implicit none
+
+    integer lot
+
+    integer ix, ixp
+    integer iy, iyp
+    integer iz, izp
+
+    real*8 vec(nnx, nny, nnz, nnd, lot)
+    real*8 div(nnx, nny, nnz,     lot)
+
+    call check(nnd, 3, 'nd3c  ')
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+
+    if(iflag_make_t1 /= 1) then
+       call make_t1
+    endif
+
+    div = 0
+    
+    do ix=1, nnx
+       do ixp=1, nnx
+          div(ix, :, :, :) = &
+          div(ix, :, :, :) + &
+           t1x(ix, ixp)   * &
+          vec(ixp, :, :, 1, :)
+       enddo
+    enddo
+
+    do iy=1, nny
+       do iyp=1, nny
+          div(:, iy, :,    :) = &
+          div(:, iy, :,    :) + &
+          t1y(   iy, iyp    ) * &
+          vec(:, iyp, :, 2, :)
+       end do
+    enddo
+
+     do iz=1, nnz
+       do izp=1, nnz
+          div(: , :, iz,    :) = &
+          div(: , :, iz,    :) + &
+          t1z(   iz,izp) * &
+          vec(:, :, izp, 3, :)
+       enddo
+    enddo
+
+  end subroutine r_div_gen
+
+  subroutine c_div_gen(vec, div, lot)
+    implicit none
+
+    integer lot
+
+    integer ix, ixp
+    integer iy, iyp
+    integer iz, izp
+
+    complex*16 vec(nnx, nny, nnz, nnd, lot)
+    complex*16 div(nnx, nny, nnz,     lot)
+
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+    call check(nnd, 3, 'nd3c  ')
+
+    if(iflag_make_t1 /= 1) then
+       call make_t1
+    endif
+
+    div = 0
+    
+    do ix=1, nnx
+       do ixp=1, nnx
+          if(abs(t1x(ix,ixp))>sml) then
+          div(ix, :, :, :) = &
+          div(ix, :, :, :) + &
+           t1x(ix, ixp)   * &
+          vec(ixp, :, :, 1, :)
+          endif
+       enddo
+    enddo
+
+    do iy=1, nny
+       do iyp=1, nny
+          if(abs(t1y(iy,iyp))>sml) then
+          div(:, iy, :,    :) = &
+          div(:, iy, :,    :) + &
+          t1y(   iy, iyp    ) * &
+          vec(:, iyp, :, 2, :)
+          endif
+       end do
+    enddo
+
+     do iz=1, nnz
+       do izp=1, nnz
+          if(abs(t1z(iy,iyp))>sml)then
+          div(: , :, iz,    :) = &
+          div(: , :, iz,    :) + &
+          t1z(   iz,izp) * &
+          vec(:, :, izp, 3, :)
+          endif
+       enddo
+    enddo
+
+  end subroutine c_div_gen
+
+  subroutine r_curl_gen(vec, curl, lot)  ! inefficient; can be reduced by 30%
+    implicit none
+    integer lot
+    integer id, idn, idnn
+
+    real*8 vec(     nnx, nny, nnz, nnd, lot)
+    real*8 curl(    nnx, nny, nnz, nnd, lot)
+    real*8 comp(    nnx, nny, nnz,     lot)
+    real*8 grad_comp(nnx, nny, nnz, nnd, lot)
+    
+    if(iset/=1) stop ' set_grad_div_curl  not called '
+    call check(nnd, 3, 'nnd3c  ')
+
+    curl = 0.d0
+    do id=1, nnd
+       idn=id+1          ! x:y,z  ; y: z,x   ; z: x,y
+       idnn = idn+1
+       if(idn>3 ) idn = idn-3
+       if(idnn>3) idnn=idnn-3
+
+       comp = vec(:,:,:,id,:)
+       call r_grad_gen(comp, grad_comp, lot)
+       
+       curl(       :,:,:,idnn,:) = &
+         curl(     :,:,:,idnn,:) &
+       - grad_comp(:,:,:,idn, :)
+
+       curl(       :,:,:,idn,:) = &
+         curl(     :,:,:,idn,:) &
+       - grad_comp(:,:,:,idnn, :)
+
+    end do
+  end subroutine r_curl_gen
+end module grad_div_curl
+
+subroutine drv1_trm(t1, nr, dr)
+  use grad_div_curl, only : flg_pt
+  implicit none
+  integer nr
+  real*8  dr, t1(nr, nr)
+
+  t1 = 0.d0
+  if(nr==1) return
+
+  select case(flg_pt)
+  case(0) ! fft
+     call drv_ft
+  case(3) ! 3pt
+     call drv_3pt
+  case(5)
+     call drv_5pt
+  case default
+     write(6,*)' flg_pt problem ',flg_pt
+     stop
+  end select
+  write(6,*)' dev. from anti-symm ',&
+       sum(abs(t1+transpose(t1)))/2.d0/sum(abs(t1))
+  
+contains
+  
+  subroutine drv_ft_old
+    implicit none
+    complex*16, parameter :: ci=(0.d0,1.d0)
+    integer  ir, jr, ik
+    real*8 pi
+    real*8 Lr
+    real*8 dk
+    real*8 kk
+!    real*8 term
+    pi = dacos(-1.d0)
+    
+    Lr = nr*dr
+    dk = 2.d0*pi/Lr
+    
+    t1 = 0.d0
+    do ir=1, nr
+       do jr=1, nr
+          do ik=1, nr
+             if(ik.le.nr/2) then
+                kk = (ik-1)*dk
+             else if(ik==nr/2+1) then
+                kk = 0.d0
+             else
+                kk = (ik-1-nr)*dk
+             end if
+             
+             t1(ir,jr) = t1(ir,jr) + exp(ci*kk*(ir-jr)*dr)*(ci*kk)
+          enddo
+       enddo
+    enddo
+    t1 = t1/nr
+  end subroutine drv_ft_old
+
+  subroutine drv_3pt
+    implicit none
+    integer ir
+    integer jr
+    real*8  term
+
+    do ir=1,nr
+       do jr=1, nr
+          term = 0.d0
+          if(ir==jr-1) then
+             term = 1.d0
+          elseif(ir==jr+1) then
+             term = -1.d0
+          elseif(ir==nr .and. jr==1) then
+             term = 1.d0
+          elseif(ir==1 .and. jr==nr) then
+             term = -1.d0
+          else
+             term = 0.d0
+          end if
+          t1(ir,jr) = term/2.d0/dr
+       end do
+    enddo
+  end subroutine drv_3pt
+
+  subroutine drv_5pt
+    implicit none
+    integer ir
+    integer jr
+    integer dd
+    real*8  tt
+    do ir=1, nr
+       do jr=1, nr
+          dd = jr-ir
+
+!          if(dd> nr/2) dd=dd-nr   ! include if perodicity wanted
+!          if(dd<-nr/2) dd=dd+nr   ! include if perodicity wanted
+          
+          tt=0.d0
+          select case(dd)
+          case(2)
+             tt = -1.d0
+          case(1)
+             tt = 8.d0
+          case(-1)
+             tt = -8.d0
+          case(-2)
+             tt = 1.d0
+          end select
+          t1(ir,jr) = tt/dr/12.d0
+          
+       end do
+    end do
+  end subroutine drv_5pt
+  
+  subroutine drv_ft
+    implicit none
+    complex*16, parameter :: ci=(0.d0,1.d0)
+    integer ir
+    integer jr
+    integer ik
+    real*8 pi
+
+    real*8 kk
+    real*8 dk
+
+    pi = dacos(-1.d0)
+    dk = 2*pi/nr/dr
+    
+    t1 = 0.d0
+    do ir=1, nr
+       do jr=1, nr
+          do ik=0, nr-1
+
+             if(ik<nr/2) then
+                kk = ik*dk
+             else if(ik>nr/2) then
+                kk = (ik-nr)*dk
+             else
+                kk = 0.d0
+             end if
+             
+             t1(ir, jr) = &
+             t1(ir, jr) + ci*kk*exp(ci*(ir-jr)*dr*kk)
+          end do
+       enddo
+    enddo
+    t1 = t1/nr
+  end subroutine drv_ft
+end subroutine drv1_trm
+
+
+  

@@ -1,0 +1,6 @@
+subroutine writeflush(j)
+  implicit none
+  integer j
+  write(6,*)' stage: ',j
+  call flush(6)
+end subroutine writeflush

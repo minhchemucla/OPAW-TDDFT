@@ -1,0 +1,29 @@
+/home/dxn/paw/pawv14.3/0_libpaw_mod.f90:    save !DN
+/home/dxn/paw/pawv14.3/1_paw.f90:    save ! DN
+/home/dxn/paw/pawv14.3/1_paw.f90:    integer :: nfovnr ! change to 4 or 6, DN    !for spline
+/home/dxn/paw/pawv14.3/2_atom.f90:    save !DN
+/home/dxn/paw/pawv14.3/3_main.f90:  implicit none !DN
+/home/dxn/paw/pawv14.3/3_main.f90:  save ! DN
+/home/dxn/paw/pawv14.3/3_main.f90:    integer, parameter :: iscf_hminmax = 20 ! last scf where hminmax is done DN
+/home/dxn/paw/pawv14.3/3_main.f90:    real*8, parameter :: param_dij_max = 500d0 ! DN
+/home/dxn/paw/pawv14.3/3_main.f90:    real*8  :: mix_diis1=0.5 ! DN.  Later read in read_param 
+/home/dxn/paw/pawv14.3/diag.f90:          write(*,*) 'homo,lumo, gap Ha ',&         ! DN
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc  ))),&    ! DN
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc+1))),&    ! DN
+/home/dxn/paw/pawv14.3/diag.f90:              -real(eig_tot(ord(nkpt*nocc  )))+&    ! DN
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc+1)))      ! DN
+/home/dxn/paw/pawv14.3/diag.f90:          write(*,*) 'homo,lumo, gap eV ',&                              !DN
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc  ))*27.211396641308),&         !DN
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc+1))*27.211396641308),&         !DN 
+/home/dxn/paw/pawv14.3/diag.f90:              -real(eig_tot(ord(nkpt*nocc  ))*27.211396641308)+&         !DN 
+/home/dxn/paw/pawv14.3/diag.f90:               real(eig_tot(ord(nkpt*nocc+1))*27.211396641308)           !DN
+/home/dxn/paw/pawv14.3/diis1.f90:  use main_mod, only : mix_di => mix_diis1 !DN
+/home/dxn/paw/pawv14.3/diis1.f90:  save !DN
+/home/dxn/paw/pawv14.3/diis1.f90:       write(6,*) ' iscf,norm(error1) ',iscf,B(K1,K1); write(6,*) ; call flush(6) ! DN
+/home/dxn/paw/pawv14.3/diis.f90:  save !DN
+/home/dxn/paw/pawv14.3/get_dij.f90:        real*8 dd ! DN
+/home/dxn/paw/pawv14.3/get_dij.f90:                   dd = dijall(siz_dijall+ind-1) !DN
+/home/dxn/paw/pawv14.3/get_dij.f90:                   if(abs(dd)>param_dij_max) dd = dd /abs(dd)*param_dij_max !DN 
+/home/dxn/paw/pawv14.3/get_dij.f90:                   at(ia)%dij(i,j)=dd ! DN 
+/home/dxn/paw/pawv14.3/get_dij.f90:                   at(ia)%dij(j,i)=dd ! DN
+/home/dxn/paw/pawv14.3/hminmax.f90:  integer, parameter :: niter = 25 ! DN

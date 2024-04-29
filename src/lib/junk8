@@ -1,0 +1,10 @@
+subroutine cheb_coeff_r_gaussian_E(nnc, havg, DL, E, Ewdth, ro)
+  use cheby_coef_work, only : n, m,f, d
+  implicit none
+  integer nnc
+  real*8  havg, DL,  E, Ewdth,  ro(0:nnc) 
+  call prep_for_cheby_n_f_d(nnc, havg, dl); 
+  f = exp(-((E-D)**2)/Ewdth**2/2.d0)
+  call fftsa(N,f,m);   f = 2.d0*f/dble(N);  f(0) = f(0)/2.d0;  call check_real(f,size(f)); ro   = f(0:nnc)
+end subroutine cheb_coeff_r_gaussian_E
+

@@ -1,0 +1,129 @@
+subroutine largrange_coef(nbig,nsmall,indxmap)  ! all inputs
+  use gf2, only : m=>lag_order  ! input
+  use gf2, only : cmap => lag_coefmap, coef => lag_coef, nc=> lag_ncoef   !outputs
+  implicit none
+  integer              :: nbig, nsmall, indxmap(nsmall) !inputs
+  integer              :: ncmax, ic
+  integer, allocatable :: nghb(:)
+  logical              :: onsite 
+
+  ! given equispaced times from 1 to nbig,  and indxmap(1:nsmall), fits 
+  ! a lagrange order of "2*m" at most to all points (1:nbig)
+  !  Points near the edges use lower order interpolation,
+  ! so always we use the smae number of points to the left and right.
+
+  !
+  ! ensuring 1st, last point of indmap are 1 and nbig, so we  interplate, not extrapolate
+  !
+  call check(indxmap(1),1,        ' indxmap(1) vs. one ')
+  call check(indxmap(nsmall),nbig,' indxmap(nsmall), nbig ')
+  
+  !
+  ! check monotonicity, i.e., order
+  !
+  do i=1,nsmall-1
+     if(indxmap(i+1).le.indxmap(i)) then
+        write(6,*)' problem, stopping: i, indxmap(i:i+1) ',i,indxmap(i:i+1)
+     end if
+  end do
+
+  ! checking finished, now allocate
+  ncmax = 2*m*nbig
+
+  if(allocated(cmap))deallocate(cmap)
+  allocate(cmap(2,ncmax), stat=st); call check(st, ' cmap ')
+
+  if(allocated(cval))deallocate(cval)
+  allocate(cval(ncmax),   stat=st); call check(st, ' cval ')
+
+  ! now set neighbors
+  allocate(nghb(   2*m),  stat=st); call check(st, ' nghb ')
+  allocate(cval_1p(2*m),  stat=st); call check(st, ' nghb ')
+
+  ic = 0                   ! super index
+  do i=1,nbig
+     call lagrange_neigbbors_and_coef(i, nghb, nng, cval_1p)
+     call check_le(nng,2*m, ' nng,2*m   ')
+     do j=1,nng
+        ic=ic+1
+        call check_le(ic,ncmax,' ic, ncmax ')
+        cmap(1:2,ic) = (/ i, indxmap(j) /)
+        cval(ic)     = cval_1p(j)                
+     end do
+  end do
+
+  deallocate(nghb)
+  deallocate(cval_1p)
+
+contains
+  subroutine lagrange_neighbors_and_coef(i, nghb, nng, c1)
+    implicit none
+    integer i, nng, nghb(2*m),  ib, it
+    real*8            c1(2*m)
+    
+    ! first find indx
+    nghb = -99
+    c1   = 0d0
+    call check_le(2,nsmall,' 2-nsmall ')
+    
+    ib=1
+    it=i
+    if(it==1) it=2
+
+    logsearch : do
+       if(it-ib==1) exit logsearch
+       j=(ib+it)/2
+       if(indxmap(j).ge.i) then    ! e.g., i=94, indxmap(30) =92, indxmap(31)=95 =>ib=30,it=31
+          it=j
+       else
+          ib=j
+       endif
+       call check_le(ib+1,it,' ib+1,it ')
+    end do logsearch
+    
+    do j=ib,it
+       if(indxmap(j)==i) then
+          nng       = 1
+          nghb(1:1) = (/ j /)
+          c1(1)     = 1d0
+          return
+       end if
+    end do
+
+    k=min(m,ib,nsmall+1-it)
+    kb=ib-(k-1)
+    kt=it+(k-1)
+    nng = 2*k
+    call check(kt-kb+1,nng,' kt-kb+1,nng ')
+    nghb(1:nng) = (/ (kb+(jj-1), jj=1,nng) /)
+
+    call lag_interp_1p(i, indxmap(kb),c1,nng)
+  end subroutine lagrange_neighbors_and_coef
+
+  subroutine lag_interp_1p(p,map,c1,nng)    ! Abramowitz and Stegun, Chap. 25, 25.2.1-25.2.2, p.878
+    implicit none
+    integer nng
+    integer i,j,p
+    integer map(nng)
+    real*8   c1(nng)
+    real*8  num, den
+
+    do i=1,nng
+       num = 1d0
+       den = 1d0
+       do j=1,nng
+          if(i.ne.j) then
+             num = num *dble(p     -map(j))
+             den = den *dble(map(i)-map(j))
+          end if
+       enddo
+       c1(i) = num/den
+    end do
+
+    if(abs(sum(c1)-1d0)>1d-10) then
+       write(6,*)' problem stopping, lag_interp_1p: point, n_neihgbors, sum(c1) ',p,nng,sum(c1)
+       stop
+    endif
+  end subroutine lag_interp_1p
+end subroutine largrange_coef
+        

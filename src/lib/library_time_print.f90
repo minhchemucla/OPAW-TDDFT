@@ -1,0 +1,45 @@
+subroutine time_print(a)
+  use mpi_lib_ours, only : rank,nodes
+  implicit none
+  character(*) a
+  real*8, save:: tstart, t0, t1
+  logical,save :: ifirst=.true.
+  logical      :: lopen
+
+  integer, save :: ifile0 = 76000, ifile
+  real*8,  save :: lengthmax=1d12  ! essentially infinity
+  integer, save :: count = 0
+
+!  if(rank>3.and.rank<nodes-2) return ! dont erase
+
+  ifile= ifile0+rank
+
+
+  count = count+1
+  if(ifirst) then
+     ifirst=.false.
+
+     !inquire(unit=ifile,opened=lopen)
+     !If(lopen) stop ' problem : file ifile in time_print open prematuely '
+     !open(ifile,file='timing.txt',status='replace',form='FORMATTED',access='sequential')
+     call cpu_time(tstart)
+     t0 = tstart
+
+  else
+     !inquire(unit=ifile,opened=lopen)
+     !if(.not.lopen) stop ' problem : file ifile in time_print closed prematuely '
+  end if
+ 
+  call cpu_time(t1)
+  write( ifile,*)' time for ',a,' is  ',real(t1-t0),' Accumulated: ',real(t1-tstart);  call flush(ifile)
+  !write(     6,*)' rank: ',rank,' for ',a,' is  ',real(t1-t0),' Accu: ',real(t1-tstart); call flush(6)
+
+  t0=t1
+
+  if(count==lengthmax) then
+     count=0
+     rewind(ifile)
+  end if
+
+end subroutine time_print
+  

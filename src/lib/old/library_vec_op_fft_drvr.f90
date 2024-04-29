@@ -1,0 +1,110 @@
+!call fft_vec_drvr
+!end program
+
+subroutine fft_vec_drvr
+  implicit none
+
+  integer            :: ix,      iy,      iz
+  integer, parameter :: nx=30,   ny=24,   nz=16
+  real*8,  parameter :: dx=0.5,  dy=0.6,  dz=0.55
+  real*8,  parameter :: bx=2.0,  by=1.8,  bz=1.7
+  real*8,  parameter :: kx=0.4,  ky=0.3,  kz=0.2
+  real*8,  parameter :: x0=-1.0, y0=0.6,  z0=0.7
+
+  real*8,  allocatable :: x( :)
+  real*8,  allocatable :: y( :)
+  real*8,  allocatable :: z( :)
+  real*8,  allocatable :: f( :,:,:)
+  real*8,  allocatable :: fd(:,:,:)
+  real*8,  allocatable :: fl(:,:,:)
+  real*8,  allocatable :: fg(:,:,:,:)
+
+  real*8,  allocatable :: al(:,:,:)
+  real*8,  allocatable :: ag(:,:,:,:)
+
+  complex*16, parameter :: ci=(0d0,1d0)
+  complex*16            :: cx,      cy,      cz,   ff
+
+  call alloc
+  call set_f
+  call grad_fft(nx, ny, nz, dx, dy, dz, f,  fg)
+  call  div_fft(nx, ny, nz, dx, dy, dz, fg, fd)
+  call  lap_fft(nx, ny, nz, dx, dy, dz, f,  fl)
+  call prnt_diff
+  call dealloc
+  
+contains
+  subroutine alloc
+    implicit none
+    integer st
+    
+    allocate(f( nx, ny, nz),     stat=st)
+    allocate(fd(nx, ny, nz),     stat=st)
+    allocate(fl(nx, ny, nz),     stat=st)
+    allocate(fg(nx, ny, nz, 3),  stat=st)
+    
+    allocate(al(nx, ny, nz),     stat=st)
+    allocate(ag(nx, ny, nz, 3),  stat=st)
+
+    allocate( x(nx),             stat=st)
+    allocate( y(ny),             stat=st)
+    allocate( z(nz),             stat=st)
+  end subroutine alloc
+
+  subroutine set_f
+    implicit none
+    complex*16 xx, yy, zz, ff
+
+    cx = x0 + ci* kx
+    cy = y0 + ci* ky
+    cz = z0 + ci* kz
+    
+    do iz=1,nz
+       do iy=1,ny
+          do ix=1,nx
+             
+             x(ix) = -(nx-1)/2d0*dx + (ix-1)*dx
+             y(iy) = -(ny-1)/2d0*dy + (iy-1)*dy
+             z(iz) = -(nz-1)/2d0*dz + (iz-1)*dz
+             
+             xx = x(ix)-cx
+             yy = y(iy)-cy
+             zz = z(iz)-cz
+             
+             ff = exp(-0.5*(xx**2/bx**2+yy**2/by**2+zz**2/bz**2)) ! complex*16
+             f(ix, iy, iz) = dble(ff)
+             
+             ag(ix, iy, iz, 1) = dble(-xx/bx**2 * ff)
+             ag(ix, iy, iz, 2) = dble(-yy/by**2 * ff)
+             ag(ix, iy, iz, 3) = dble(-zz/bz**2 * ff)
+             
+             al(ix, iy, iz)    = ((xx**2-bx**2)/bx**2+(yy**2-by**2)/by**2+(zz**2-bz**2)/bz**2)* ff
+          enddo
+       enddo
+    enddo
+  end subroutine set_f
+
+  subroutine prnt_diff
+    implicit none
+    
+    real*8 dg, dd, dl, eg, ed, el
+    
+    dg = maxval(abs(fg-ag)); eg = maxval(abs(ag))
+    dd = maxval(abs(fd-al)); ed = maxval(abs(al))  ! ad=al
+    dl = maxval(abs(fl-al)); el = maxval(abs(al))
+    
+    write(6,*)' difference for grad ',dg,' vs. maximum ',eg
+    write(6,*)' difference for  div ',dd,' vs. maximum ',ed
+    write(6,*)' difference for grad ',dl,' vs. maximum ',el
+  end subroutine prnt_diff
+
+  subroutine dealloc
+    implicit none
+    deallocate( f, fd, fl, fg, ag, al, x, y, z)
+  end subroutine dealloc
+end subroutine fft_vec_drvr
+
+  
+  
+  
+  

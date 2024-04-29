@@ -1,0 +1,187 @@
+subroutine grad(nx, dx, ny, dy, nz, dz, den, gdn)
+  use main, only: ekcut, denekcut
+  implicit none
+  integer     :: nx, ny, nz, ix, iy, iz
+  real*8      :: dx, dy, dz, k2
+  real*8      :: dkx, dky, dkz, kx, ky, kz
+  real*8      :: den(nx,ny,nz), gdn(nx,ny,nz)
+  complex*16  :: vec(nx,ny,nz) 
+  complex*16  :: vo1(nx,ny,nz), vo2(nx,ny,nz), vo3(nx,ny,nz)
+  complex*16  :: vf1(nx,ny,nz), vf2(nx,ny,nz), vf3(nx,ny,nz)
+  real*8, parameter :: pi=3.141592653589793, tpi=6.283185307179586
+
+  !later remove this whole subroutine and use only grad_vec
+
+  dkx = tpi/(dble(nx)*dx)
+  dky = tpi/(dble(ny)*dy)
+  dkz = tpi/(dble(nz)*dz)
+
+  vec = den
+  call fft3d_forward(nx, ny, nz, vec, vo1)
+
+  vo2 = vo1
+  vo3 = vo1
+
+  do iz = 1,nz
+    do iy = 1,ny
+      do ix = 1,nx
+        
+        kx = dble(ix-1) * dkx
+        ky = dble(iy-1) * dky
+        kz = dble(iz-1) * dkz
+
+        if(kx>pi/dx) kx = kx-tpi/dx
+        if(ky>pi/dy) ky = ky-tpi/dy
+        if(kz>pi/dz) kz = kz-tpi/dz
+
+        k2 = kx**2.d0 + ky**2.d0 + kz**2.0
+        if(k2.gt.denekcut*ekcut) then
+          vo1(ix,iy,nz) = 0.d0
+          vo2(ix,iy,nz) = 0.d0
+          vo3(ix,iy,nz) = 0.d0
+        end if
+
+
+        vo1(ix,iy,nz) = vo1(ix,iy,nz) * kx
+        vo2(ix,iy,nz) = vo2(ix,iy,nz) * ky
+        vo3(ix,iy,nz) = vo3(ix,iy,nz) * kz
+
+      end do
+    end do
+  end do
+
+  call fft3d_backward(nx, ny, nz, vo1, vf1) 
+  call fft3d_backward(nx, ny, nz, vo2, vf2) 
+  call fft3d_backward(nx, ny, nz, vo3, vf3) 
+
+  vf1 = vf1 / dble(nx*ny*nz)
+  vf2 = vf2 / dble(nx*ny*nz)
+  vf3 = vf3 / dble(nx*ny*nz)
+
+  vec = sqrt((aimag(vf1))**2.d0 + (aimag(vf2))**2.d0 + (aimag(vf3))**2.d0)
+
+  gdn = dble(vec)
+end subroutine
+  
+subroutine grad_vec(nx, dx, ny, dy, nz, dz, den, gdvc)
+  use main, only: ekcut, denekcut
+  implicit none
+  integer     :: nx, ny, nz, ix, iy, iz
+  real*8      :: dx, dy, dz, k2
+  real*8      :: dkx, dky, dkz, kx, ky, kz
+  real*8      :: den(nx,ny,nz), gdvc(nx,ny,nz,3)
+  complex*16  :: vec(nx,ny,nz) 
+  complex*16  :: vo1(nx,ny,nz), vo2(nx,ny,nz), vo3(nx,ny,nz)
+  complex*16  :: vf1(nx,ny,nz), vf2(nx,ny,nz), vf3(nx,ny,nz)
+  real*8, parameter :: pi=3.141592653589793, tpi=6.283185307179586
+
+  dkx = tpi/(dble(nx)*dx)
+  dky = tpi/(dble(ny)*dy)
+  dkz = tpi/(dble(nz)*dz)
+
+  vec = den
+  call fft3d_forward(nx, ny, nz, vec, vo1)
+
+  vo2 = vo1
+  vo3 = vo1
+
+  do iz = 1,nz
+    do iy = 1,ny
+      do ix = 1,nx
+        
+        kx = dble(ix-1) * dkx
+        ky = dble(iy-1) * dky
+        kz = dble(iz-1) * dkz
+
+        if(kx>pi/dx) kx = kx-tpi/dx
+        if(ky>pi/dy) ky = ky-tpi/dy
+        if(kz>pi/dz) kz = kz-tpi/dz
+
+
+        k2 = kx**2.d0 + ky**2.d0 + kz**2.0
+        if(k2.gt.denekcut*ekcut) then
+          vo1(ix,iy,nz) = 0.d0
+          vo2(ix,iy,nz) = 0.d0
+          vo3(ix,iy,nz) = 0.d0
+        end if
+
+        vo1(ix,iy,nz) = vo1(ix,iy,nz) * kx
+        vo2(ix,iy,nz) = vo2(ix,iy,nz) * ky
+        vo3(ix,iy,nz) = vo3(ix,iy,nz) * kz
+
+      end do
+    end do
+  end do
+
+  call fft3d_backward(nx, ny, nz, vo1, vf1) 
+  call fft3d_backward(nx, ny, nz, vo2, vf2) 
+  call fft3d_backward(nx, ny, nz, vo3, vf3) 
+
+  gdvc(:,:,:,1) = -aimag(vf1(:,:,:)) / dble(nx*ny*nz)
+  gdvc(:,:,:,2) = -aimag(vf2(:,:,:)) / dble(nx*ny*nz)
+  gdvc(:,:,:,3) = -aimag(vf3(:,:,:)) / dble(nx*ny*nz)
+
+end subroutine
+  
+subroutine divrg(nx, dx, ny, dy, nz, dz, invec, outvec)
+  use main, only: ekcut, denekcut
+  implicit none
+  integer     :: nx, ny, nz, ix, iy, iz
+  real*8      :: dx, dy, dz, k2
+  real*8      :: dkx, dky, dkz, kx, ky, kz
+  real*8      :: invec(nx,ny,nz,3), outvec(nx,ny,nz)
+  complex*16  :: vec(nx,ny,nz), vo(nx,ny,nz)
+  complex*16  :: vo1(nx,ny,nz), vo2(nx,ny,nz), vo3(nx,ny,nz)
+  complex*16  :: vf(nx,ny,nz)
+  real*8, parameter :: pi=3.141592653589793, tpi=6.283185307179586
+
+  dkx = tpi/(dble(nx)*dx)
+  dky = tpi/(dble(ny)*dy)
+  dkz = tpi/(dble(nz)*dz)
+
+  !later redo with mutidim fft
+  vec = invec(:,:,:,1)
+  call fft3d_forward(nx, ny, nz, vec, vo1)
+
+  vec = invec(:,:,:,2)
+  call fft3d_forward(nx, ny, nz, vec, vo2)
+
+  vec = invec(:,:,:,3)
+  call fft3d_forward(nx, ny, nz, vec, vo3)
+
+  do iz = 1,nz
+    do iy = 1,ny
+      do ix = 1,nx
+        
+        kx = dble(ix-1) * dkx
+        ky = dble(iy-1) * dky
+        kz = dble(iz-1) * dkz
+
+        if(kx>pi/dx) kx = kx-tpi/dx
+        if(ky>pi/dy) ky = ky-tpi/dy
+        if(kz>pi/dz) kz = kz-tpi/dz
+
+
+        k2 = kx**2.d0 + ky**2.d0 + kz**2.0
+        if(k2.gt.denekcut*ekcut) then
+          vo1(ix,iy,nz) = 0.d0
+          vo2(ix,iy,nz) = 0.d0
+          vo3(ix,iy,nz) = 0.d0
+        end if
+
+        vo1(ix,iy,nz) = vo1(ix,iy,nz) * kx
+        vo2(ix,iy,nz) = vo2(ix,iy,nz) * ky
+        vo3(ix,iy,nz) = vo3(ix,iy,nz) * kz
+
+      end do
+    end do
+  end do
+
+  vo = vo1 + vo2 + vo3
+
+  call fft3d_backward(nx, ny, nz, vo, vf) 
+
+  outvec(:,:,:) = -aimag(vf(:,:,:)) / dble(nx*ny*nz)
+
+end subroutine
+  

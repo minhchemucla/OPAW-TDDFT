@@ -1,0 +1,36 @@
+Exploding Chebyshev DFT with PAW
+v1 the first working version
+v2 change from s^-1/2 H s^-1/2 to s^-1 H in exploding Chebyshev
+v3 add diis
+v4 add k point sampling; no phase factor for projector; only correct for gamma point
+   now require one k point per rank ..
+v4.1 fixed some bad practice in application of mpi (should only read from head node, etc)
+v5 phase factor on rough grid 
+   forgot to broadcast p3d_1, correct only for single k point
+v6 enable periodic
+v7 enable bessel form of shape function
+v9 allow nkpoints/=ncore
+v10 phase factor on fine grid before spline ( not using this)
+v11 allow pbe
+v12 Martyna Tuckerman ( not using thi)
+v13 fixed one error in set_rhoij (abs(rhoij)>1d-10 instead of rhoij>1d-10)
+v14 diis for dij
+v15 use original (not rotated) xml files, orthogonalization on rough grid
+v16 orthogonalization on radial grid
+v17 grid doubling
+v18 fixed grid doubling
+v19 ekcut -> ek_factor
+v19.1 another way to map double grid back
+v20 some acceleration on vnl
+v21 ek_factor1
+v22 dx -> box size; introduced nrmax to treat exploding tail of H 
+v23 remove lots of writing
+v24 further orthogonalize projectors on rough grid
+v25 add parameter module
+v26 fixed some bugs related to mpi (bcast sij)
+v27 sij=max(sij,-1+toll)
+v28 alloc in diag and orthophi, put toll(in sij) and r_123(in rnel) in param
+
+v32 starting from v32, there are two modes: all nodes have same paw, or k points dependent
+v34 parallel over grid points
+v35 write wf.txt/wf.bin for gw

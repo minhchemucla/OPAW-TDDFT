@@ -1,0 +1,1187 @@
+
+------------------------------------------------------------------------------------------------------------------
+The following is a list of the modules and extensions currently available:
+------------------------------------------------------------------------------------------------------------------
+  AMDuProf: AMDuProf/3.4.475
+
+  DefaultModules: DefaultModules
+
+  abaqus: abaqus/2018.bk, abaqus/2018, abaqus/2021hf7
+
+  abinit: abinit/8.10.3-openblas
+
+  abinit/9.4.2: abinit/9.4.2/q47zuuw
+
+  accessusage: accessusage/0.5-1
+
+  adios2/2.7.1: adios2/2.7.1/f2ejleg, adios2/2.7.1/m6x3v7o, adios2/2.7.1/sq2jha4, adios2/2.7.1/vohvcrq, ...
+
+  adol-c/2.7.2: adol-c/2.7.2/hjqerr7, adol-c/2.7.2/qygdtvg
+
+  amber: amber/18.18, amber/20-patch15, amber/20, amber/20.21
+
+  amber/22: amber/22/c6gwmih-omp
+
+  amdblis: amdblis/2.2-openmp, amdblis/2.2
+
+  amdblis/3.1: amdblis/3.1/zcuungw-omp, amdblis/3.1/6sfatsa
+
+  amdfftw: amdfftw/2.2
+
+  amdfftw/3.1: amdfftw/3.1/t757st4, amdfftw/3.1/zqoqbjf-omp, amdfftw/3.1/2u6mymp
+
+  amdlibflame: amdlibflame/2.2
+
+  amdlibflame/3.1: amdlibflame/3.1/f37pl2z
+
+  amdlibm/3.1: amdlibm/3.1/uil3tqx
+
+  amdscalapack/3.1: amdscalapack/3.1/7qg2ts5
+
+  anaconda3: anaconda3/2020.11
+
+  anaconda3/2021.05: anaconda3/2021.05/kfluefz, anaconda3/2021.05/q4munrg
+
+  ant/1.10.7: ant/1.10.7/hcgc7fk, ant/1.10.7/5soub24
+
+  aocc: aocc/2.2.0
+
+  aocc/3.2.0: aocc/3.2.0/io3s466
+
+  aocl-sparse/3.1: aocl-sparse/3.1/fg4cxoj
+
+  aria2: aria2/1.35.0
+
+  aria2/1.35.0: aria2/1.35.0/d7r7iaa, aria2/1.35.0/q32jtg2
+
+  arm-forge: arm-forge/21.0.1-linux-x86_64
+
+  armadillo: armadillo/9.800.3-openblas
+
+  arpack-ng/3.7.0: arpack-ng/3.7.0/afk3rw6, arpack-ng/3.7.0/cimahud, arpack-ng/3.7.0/coldhdz, ...
+
+  arpack-ng/3.8.0: arpack-ng/3.8.0/ccwydfp, arpack-ng/3.8.0/htqrwwu, arpack-ng/3.8.0/lazgjan, ...
+
+  arrayfire/3.7.3: arrayfire/3.7.3/pl6gadm
+
+  bamtools: bamtools/2.5.1
+
+  bcftools: bcftools/1.10.2-openblas
+
+  bcftools/1.12: bcftools/1.12/5zeidhh
+
+  beast1: beast1/1.8.4, beast1/1.10.4
+
+  beast1/1.10.4: beast1/1.10.4/obs55uz, beast1/1.10.4/ovggahx
+
+  beast1/1.8.4: beast1/1.8.4/a4ztrbb, beast1/1.8.4/uuirrt3
+
+  beast2: beast2/2.5.2, beast2/2.6.3, beast2/2.6.6
+
+  beast2/2.5.2: beast2/2.5.2/n5wdwal, beast2/2.5.2/s56gpue
+
+  beast2/2.6.4: beast2/2.6.4/bhuvd2x, beast2/2.6.4/ymaff6c
+
+  bedtools2: bedtools2/2.27.1
+
+  bedtools2/2.30.0: bedtools2/2.30.0/5anbfkq
+
+  berkeley-db: berkeley-db/18.1.40
+
+  bismark: bismark/0.19.0
+
+  bismark/0.23.0: bismark/0.23.0/4xdflxj
+
+  blast-plus: blast-plus/2.11.0
+
+  blast-plus/2.12.0: blast-plus/2.12.0/jrvhcsy
+
+  blat: blat/35
+
+  boost: boost/1.55.0, boost/1.66.0, boost/1.74.0
+
+  boost/1.77.0: boost/1.77.0/bbnd4wn, boost/1.77.0/ckwq57r, boost/1.77.0/flkgd2t, boost/1.77.0/lvxlknh, ...
+
+  bowtie2: bowtie2/2.3.4.3, bowtie2/2.4.1
+
+  bowtie2/2.4.2: bowtie2/2.4.2/ahg6m6s
+
+  bwa: bwa/0.7.17
+
+  byacc: byacc/master
+
+  bzip2: bzip2/1.0.8
+
+  cereal: cereal/1.3.0
+
+  cgal/4.13: cgal/4.13/7eof3ve, cgal/4.13/35jtz4k
+
+  cgal/5.0.3: cgal/5.0.3/axpdrof, cgal/5.0.3/jrg6ven, cgal/5.0.3/lnidf3a
+
+  charmpp: charmpp/6.10.2
+
+  charmpp/6.10.2: charmpp/6.10.2/ldvm3k4, charmpp/6.10.2/ukcmwdo, charmpp/6.10.2/6pfpumn
+
+  cmake: cmake/3.18.2, cmake/3.19.8
+
+  cmake/3.21.4: cmake/3.21.4/bpzre3q, cmake/3.21.4/rc2aosa, cmake/3.21.4/cb3azq2, cmake/3.21.4/teqow32, ...
+
+  cmjob: cmjob
+
+  cp2k: cp2k/7.1
+
+  cp2k/7.1: cp2k/7.1/ub7xgkh-omp
+
+  cpu: cpu/0.15.4, cpu/0.17.1, cpu/0.17.3a, cpu/0.17.3b
+
+  cuda: cuda/9.1.85, cuda/9.2.88, cuda/11.0.2
+
+  cuda-dcgm: cuda-dcgm/3.1.3.1
+
+  cuda/10.2.89: cuda/10.2.89/rzu2i2w
+
+  cuda/11.2.2: cuda/11.2.2/blza2ps, cuda/11.2.2/ouuq5zm
+
+  cudnn/8.1.1.33-11.2: cudnn/8.1.1.33-11.2/tdvkbaf, cudnn/8.1.1.33-11.2/33nnn6h
+
+  cue-login-env: cue-login-env
+
+  cufflinks: cufflinks/2.2.1
+
+  curl: curl/7.72.0
+
+  darshan-runtime: darshan-runtime/3.2.1
+
+  darshan-util: darshan-util/3.2.1
+
+  default-environment: default-environment
+
+  dftbplus: dftbplus/19.1-openblas
+
+  diamond: diamond/0.9.25
+
+  docker: docker/20.10.21
+
+  doxygen: doxygen/1.8.17
+
+  eigen: eigen/3.3.7
+
+  eigen/3.4.0: eigen/3.4.0/aoih524, eigen/3.4.0/rarzo6s, eigen/3.4.0/vdcusos, eigen/3.4.0/w2iz4rf, ...
+
+  elpa/2021.05.001: elpa/2021.05.001/eq4324u, elpa/2021.05.001/fyc633z
+
+  emboss: emboss/6.6.0
+
+  entrezdirect: entrezdirect/10.7.20190114
+
+  entrezdirect/10.7.20190114: entrezdirect/10.7.20190114/u7oel2n, entrezdirect/10.7.20190114/6pkkpx2
+
+  esmf/8.1.1: esmf/8.1.1/nvkj3wb
+
+  exabayes: exabayes/1.5.1
+
+  fastp: fastp/0.20.0
+
+  fastp/0.20.0: fastp/0.20.0/vihdvcu
+
+  fastqc: fastqc/0.11.7
+
+  fasttree: fasttree/2.1.10
+
+  fastx-toolkit: fastx-toolkit/0.0.14
+
+  ffmpeg/4.3.2: ffmpeg/4.3.2/vac6d7f, ffmpeg/4.3.2/w7ehiyr
+
+  fftw: fftw/2.1.5, fftw/3.3.8
+
+  fftw/2.1.5: fftw/2.1.5/gzjk5sq, fftw/2.1.5/w2t7n2w
+
+  fftw/3.3.10: fftw/3.3.10/bmvqsbr, fftw/3.3.10/cesmlwb, fftw/3.3.10/d73ktbe, fftw/3.3.10/dhxuqah, ...
+
+  freesurfer: freesurfer/7.1.1, freesurfer/7.2.0
+
+  gamess: gamess/2020.09-openblas
+
+  gamess/2021.09: gamess/2021.09/eo5efva
+
+  gatk: gatk/4.1.0.0
+
+  gatk/4.2.2.0: gatk/4.2.2.0/ybsfk6k
+
+  gaussian: gaussian/16.C.01-cuda, gaussian/16.C.01
+
+  gaussian09: gaussian09/09.D.01, gaussian09/09.E.01
+
+  gcc: gcc/7.2.0, gcc/7.5.0, gcc/9.2.0, gcc/10.2.0
+
+  gcc-nvptx: gcc-nvptx/11.3.1
+
+  gcc/10.2.0: gcc/10.2.0/i62tgso, gcc/10.2.0/npcyll4
+
+  gdal: gdal/3.1.3
+
+  gdal/3.3.3: gdal/3.3.3/myvhqxy
+
+  gdb/11.1: gdb/11.1/am633ff, gdb/11.1/vcxzknn
+
+  geos: geos/3.8.1
+
+  geos/3.9.1: geos/3.9.1/ad5oco3
+
+  gh: gh/1.13.1
+
+  gh/2.0.0: gh/2.0.0/eytgnon, gh/2.0.0/mkz3uxl
+
+  git-lfs/2.11.0: git-lfs/2.11.0/kmruniy, git-lfs/2.11.0/32gm6hi
+
+  git/2.31.1: git/2.31.1/darghpu, git/2.31.1/ldetm5y
+
+  glpk/4.65: glpk/4.65/2266fla
+
+  gmap-gsnap: gmap-gsnap/2020-06-01
+
+  gmp: gmp/6.1.2
+
+  gnuplot: gnuplot/5.2.8
+
+  gnuplot/5.4.2: gnuplot/5.4.2/lfaey6l, gnuplot/5.4.2/mfinpvw
+
+  go: go/1.15.1
+
+  gpu: gpu/0.15.4, gpu/0.17.1, gpu/0.17.3a, gpu/0.17.3b
+
+  grace: grace/5.1.25
+
+  graphviz/2.49.0: graphviz/2.49.0/rsjj7kb
+
+  gromacs: gromacs/2019.6-plumed, gromacs/2019.6-openblas-plumed, gromacs/2019.6, gromacs/2020.4
+
+  gromacs/2020.4: gromacs/2020.4/tdngw6l-omp, gromacs/2020.4/2ufeq67-omp, gromacs/2020.4/65gq3je-omp
+
+  gsl: gsl/2.5
+
+  gsl/2.7: gsl/2.7/aji2yx5, gsl/2.7/ix3kgnc, gsl/2.7/sryud5k, gsl/2.7/wtlsmyy, gsl/2.7/6i5sjyc
+
+  hadoop: hadoop/2.6.0, hadoop/3.2.2
+
+  hadoop/3.3.0: hadoop/3.3.0/bfyu354
+
+  hdf: hdf/4.2.15
+
+  hdf5: hdf5/1.8.21, hdf5/1.10.6, hdf5/1.10.7-cxx, hdf5/1.10.7
+
+  hdf5/1.10.7: hdf5/1.10.7/butdr5c, hdf5/1.10.7/e27q55q, hdf5/1.10.7/igkucjy, hdf5/1.10.7/ixk4b4f, ...
+
+  hisat2: hisat2/2.2.0
+
+  hisat2/2.2.0: hisat2/2.2.0/qip6jby
+
+  hpl/2.3: hpl/2.3/bok66cm, hpl/2.3/de4t44f-omp, hpl/2.3/iyq74za, hpl/2.3/jj7m7ln, hpl/2.3/kxy5uei, ...
+
+  htslib/1.12: htslib/1.12/wqxefh3
+
+  htslib/1.13: htslib/1.13/4yylg6i
+
+  hwloc: hwloc/1.11.11, hwloc/2.2.0
+
+  hypre: hypre/2.19.0-openblas
+
+  hypre/2.23.0: hypre/2.23.0/hj2esdx, hypre/2.23.0/jj2ap7j, hypre/2.23.0/jmoahdn, hypre/2.23.0/ow3dab5, ...
+
+  idl: idl/8.4
+
+  imagemagick/7.0.8-7: imagemagick/7.0.8-7/e46spvd, imagemagick/7.0.8-7/wpjbv6m
+
+  intel: intel/17.0.7, intel/19.0.5.281, intel/19.1.1.217
+
+  intel-mkl: intel-mkl/2018.1.163, intel-mkl/2019.1.144, intel-mkl/2020.3.279
+
+  intel-mkl/2020.4.304: intel-mkl/2020.4.304/flrwt2m, intel-mkl/2020.4.304/ghfk3mu, ...
+
+  intel-mpi: intel-mpi/2019.8.254
+
+  intel-mpi/2019.10.317: intel-mpi/2019.10.317/ezrfjne, intel-mpi/2019.10.317/jhyxn2g, ...
+
+  intel-tbb: intel-tbb/2020.3
+
+  intel/19.1.3.304: intel/19.1.3.304/vecir2b, intel/19.1.3.304/6pv46so
+
+  ior/3.3.0: ior/3.3.0/c3prdsv, ior/3.3.0/c5wdybp, ior/3.3.0/fbtdgli, ior/3.3.0/g53g4um, ior/3.3.0/qjwbhdr, ...
+
+  iq-tree: iq-tree/2.1.1
+
+  iq-tree/2.1.3: iq-tree/2.1.3/lvmeedg-omp
+
+  jags: jags/4.3.0
+
+  jasper: jasper/2.0.16
+
+  jellyfish: jellyfish/2.2.7
+
+  jellyfish/2.2.7: jellyfish/2.2.7/xvw2ec7
+
+  julia: julia/1.5.3, julia/1.6.1
+
+  julia/1.6.3: julia/1.6.3/olutp43
+
+  kallisto: kallisto/0.46.2
+
+  kallisto/0.46.2: kallisto/0.46.2/bdaqnwj
+
+  kokkos/3.4.01: kokkos/3.4.01/7ohac7e, kokkos/3.4.01/7pijxsl
+
+  lammps: lammps/20200721-kokkos, lammps/20200721-openblas-plumed, lammps/20200721-openblas, lammps/20200721
+
+  lammps/20210310: lammps/20210310/jqd2pok-omp, lammps/20210310/k7oi5an-omp
+
+  libbeagle: libbeagle/2.1.2, libbeagle/3.1.2, libbeagle/4.0.0
+
+  libbeagle/3.1.2: libbeagle/3.1.2/ehdtbyb, libbeagle/3.1.2/tiy67sq
+
+  libiconv: libiconv/1.16
+
+  libjpeg-turbo: libjpeg-turbo/2.0.4
+
+  libmatheval: libmatheval/1.1.11
+
+  libmatheval/1.1.11: libmatheval/1.1.11/jsjx3uu, libmatheval/1.1.11/wvs4aqb
+
+  libpciaccess: libpciaccess/0.16
+
+  libpng: libpng/1.6.37
+
+  libtirpc: libtirpc/1.2.6
+
+  libunistring: libunistring/0.9.10
+
+  libunwind: libunwind/1.4.0
+
+  libxc/5.1.5: libxc/5.1.5/ietrtke, libxc/5.1.5/2yb6cx6
+
+  lua: lua/5.4.4
+
+  mafft: mafft/7.453
+
+  magma/2.6.1: magma/2.6.1/pp6inq4, magma/2.6.1/5tlnzda
+
+  matlab: matlab/2020b, matlab/2022a
+
+  matlab/2022b: matlab/2022b/lefe4oq, matlab/2022b/nmbr5dd
+
+  mercurial/5.8: mercurial/5.8/qmgrjvl, mercurial/5.8/sgok5dz
+
+  meson/0.60.0: meson/0.60.0/ljauepv, meson/0.60.0/yjyazzn
+
+  metis/5.1.0: metis/5.1.0/apmmdbv, metis/5.1.0/hdhfvwi, metis/5.1.0/lijcgi3, metis/5.1.0/p4p7yoo, ...
+
+  mirdeep2: mirdeep2/0.0.8
+
+  molden: molden/6.7
+
+  molden/6.7: molden/6.7/nk3z4vy
+
+  mpfr: mpfr/4.0.2
+
+  mpip: mpip/3.4.1
+
+  mpip/3.5: mpip/3.5/aowedam, mpip/3.5/blkwu65, mpip/3.5/mjhw2bi, mpip/3.5/o2hhyev, mpip/3.5/owpz5hl, ...
+
+  mrbayes: mrbayes/3.2.7a
+
+  mrbayes/3.2.7a: mrbayes/3.2.7a/yb5nz2z, mrbayes/3.2.7a/37w3iix
+
+  mumps/5.4.0: mumps/5.4.0/rn3rgpn-omp, mumps/5.4.0/z3mr2xg-omp
+
+  mvapich2: mvapich2/2.3.4, mvapich2/2.3.6
+
+  mvapich2/2.3.7: mvapich2/2.3.7/iyjtn3x
+
+  namd: namd/2.13, namd/2.14, namd/3.0-alpha-9
+
+  namd/2.14: namd/2.14/awifx3x, namd/2.14/dstif4f, namd/2.14/ruwh4yb
+
+  nbo: nbo/7.0-openblas
+
+  nccl/2.8.4-1: nccl/2.8.4-1/vpczqmv, nccl/2.8.4-1/xsmel7a
+
+  ncl: ncl/6.6.2-openblas
+
+  nco: nco/4.9.3
+
+  nco/5.0.1: nco/5.0.1/sox3sji
+
+  ncurses: ncurses/6.2
+
+  ncview: ncview/2.1.8
+
+  ncview/2.1.8: ncview/2.1.8/znk6ds3
+
+  netcdf-c: netcdf-c/4.7.4
+
+  netcdf-c/4.8.1: netcdf-c/4.8.1/b46x2ce, netcdf-c/4.8.1/ej3w5cy, netcdf-c/4.8.1/gvtiss6, netcdf-c/4.8.1/hdvk5cm, ...
+
+  netcdf-cxx: netcdf-cxx/4.2
+
+  netcdf-cxx4/4.3.1: netcdf-cxx4/4.3.1/azfjcyx, netcdf-cxx4/4.3.1/d5kubqf, netcdf-cxx4/4.3.1/dggswkr, ...
+
+  netcdf-fortran: netcdf-fortran/4.5.3
+
+  netcdf-fortran/4.5.3: netcdf-fortran/4.5.3/bccwfsv, netcdf-fortran/4.5.3/dcwxayb, netcdf-fortran/4.5.3/hg7lhvi, ...
+
+  netlib-lapack: netlib-lapack/3.8.0
+
+  netlib-lapack/3.9.1: netlib-lapack/3.9.1/d4fs3fg, netlib-lapack/3.9.1/scl6nc5, netlib-lapack/3.9.1/w73skv7, ...
+
+  netlib-scalapack: netlib-scalapack/2.1.0-netlib, netlib-scalapack/2.1.0-openblas
+
+  netlib-scalapack/2.1.0: netlib-scalapack/2.1.0/gbhcfir, netlib-scalapack/2.1.0/mcismks, ...
+
+  neuron/8.0.0: neuron/8.0.0/njfqyq5
+
+  ninja/1.10.2: ninja/1.10.2/fu3xerf, ninja/1.10.2/voyzsjx
+
+  nostack: nostack/0.15.4, nostack/0.17.1, nostack/0.17.3a, nostack/0.17.3b
+
+  numactl: numactl/2.0.12
+
+  nvhpc: nvhpc/20.9, nvhpc/21.7, nvhpc/22.2
+
+  nvhpc/21.9: nvhpc/21.9/4xco23d
+
+  nwchem: nwchem/7.0.0-openblas
+
+  nwchem/7.0.2: nwchem/7.0.2/qogdxxi
+
+  octave: octave/5.2.0-openblas
+
+  octave/6.3.0: octave/6.3.0/xpjroyg
+
+  openbabel: openbabel/3.0.0
+
+  openblas: openblas/0.3.10-openmp
+
+  openblas/0.3.18: openblas/0.3.18/fgk2tlu, openblas/0.3.18/lsmegf6, openblas/0.3.18/ombsn4y-omp, ...
+
+  openfoam: openfoam/2012-openblas
+
+  openfoam/2106: openfoam/2106/jz42us2
+
+  openjdk: openjdk/1.8.0_222-b10, openjdk/11.0.2
+
+  openjdk/1.8.0_265-b01: openjdk/1.8.0_265-b01/cgiyxcb, openjdk/1.8.0_265-b01/mz6kplk
+
+  openjdk/11.0.12_7: openjdk/11.0.12_7/xkfgsx7, openjdk/11.0.12_7/27cv2ps
+
+  openmpi: openmpi/3.1.6-cxx, openmpi/3.1.6-threads, openmpi/3.1.6, openmpi/4.0.4-nocuda, openmpi/4.0.4-openib, ...
+
+  openmpi/4.1.1: openmpi/4.1.1/ygduf2r
+
+  openmpi/4.1.3: openmpi/4.1.3/gzzscfu, openmpi/4.1.3/luhyajc, openmpi/4.1.3/oq3qvsv, openmpi/4.1.3/u2lt4pl, ...
+
+  openmpi/mlnx/gcc/64: openmpi/mlnx/gcc/64/4.1.5a1
+
+  orca: orca/4.2.1, orca/5.0.1
+
+  orca/5.0.4: orca/5.0.4/2nqnnmq
+
+  osu-micro-benchmarks/5.7.1: osu-micro-benchmarks/5.7.1/buyli2f, osu-micro-benchmarks/5.7.1/cz74qd7, ...
+
+  p7zip: p7zip/16.02
+
+  papi: papi/6.0.0.1
+
+  papi/6.0.0.1: papi/6.0.0.1/a6f2xfv, papi/6.0.0.1/tbdvjsm, papi/6.0.0.1/zoiys3f, papi/6.0.0.1/4x6f6xw, ...
+
+  parallel: parallel/20200822
+
+  parallel-netcdf: parallel-netcdf/1.12.1
+
+  parallel-netcdf/1.12.2: parallel-netcdf/1.12.2/bcptzln, parallel-netcdf/1.12.2/csctx6u, ...
+
+  parallel/20210922: parallel/20210922/kn7agtl, parallel/20210922/sqru6rr
+
+  paraview: paraview/5.8.0-openblas
+
+  paraview/5.9.1: paraview/5.9.1/tsz7a6r
+
+  parmetis/4.0.3: parmetis/4.0.3/efd2nv3, parmetis/4.0.3/fftjkx6, parmetis/4.0.3/hmdqcfp, parmetis/4.0.3/iveb5jc, ...
+
+  pciutils: pciutils/3.7.0
+
+  perl: perl/5.30.3
+
+  perl-bioperl: perl-bioperl/1.7.8
+
+  perl-bioperl/1.7.6: perl-bioperl/1.7.6/iiuhykx
+
+  perl/5.32.0: perl/5.32.0/aqkfsad, perl/5.32.0/cofhaae
+
+  petsc/3.16.1: petsc/3.16.1/ax5r6e3, petsc/3.16.1/pna6z2s, petsc/3.16.1/rlltzpx, petsc/3.16.1/roueujy-cmplx, ...
+
+  pgi: pgi/18.10, pgi/19.7, pgi/20.4
+
+  picard: picard/2.20.8
+
+  picard/2.26.2: picard/2.26.2/a75eytg
+
+  pigz: pigz/2.4
+
+  pigz/2.6: pigz/2.6/bgymyil, pigz/2.6/i4tkq26
+
+  plink: plink/1.07
+
+  plumed: plumed/2.5.5-openblas, plumed/2.5.5, plumed/2.6.1-openblas, plumed/2.6.1
+
+  plumed/2.6.3: plumed/2.6.3/fxev5vk, plumed/2.6.3/gbcpghx
+
+  py-ase: py-ase/3.18.0-openblas
+
+  py-ase/3.21.1: py-ase/3.21.1/2ixsfhj
+
+  py-cached-property: py-cached-property/1.5.1
+
+  py-cftime: py-cftime/1.0.3.4-openblas
+
+  py-cutadapt: py-cutadapt/2.9
+
+  py-cycler: py-cycler/0.10.0
+
+  py-cython: py-cython/0.29.21
+
+  py-cython/0.29.24: py-cython/0.29.24/esmiigw, py-cython/0.29.24/y4pzeb6
+
+  py-dask/2021.6.2: py-dask/2021.6.2/cfmqvjc, py-dask/2021.6.2/5t23vge
+
+  py-dendropy: py-dendropy/4.3.0
+
+  py-et-xmlfile: py-et-xmlfile/1.0.1
+
+  py-gsd: py-gsd/1.9.3
+
+  py-h5py: py-h5py/2.10.0-openblas
+
+  py-h5py/3.4.0: py-h5py/3.4.0/e4777ka, py-h5py/3.4.0/h6lkxjq, py-h5py/3.4.0/hoipakr, py-h5py/3.4.0/rlpdneo, ...
+
+  py-htseq: py-htseq/0.11.2-openblas
+
+  py-jdcal: py-jdcal/1.3
+
+  py-jupyter-core/4.7.1: py-jupyter-core/4.7.1/a52dnrz, py-jupyter-core/4.7.1/kvvn7xl
+
+  py-jupyterlab/3.2.1: py-jupyterlab/3.2.1/fbrlmmt, py-jupyterlab/3.2.1/mfzpwxa
+
+  py-kiwisolver: py-kiwisolver/1.1.0
+
+  py-matplotlib: py-matplotlib/3.3.2-openblas
+
+  py-matplotlib/3.4.3: py-matplotlib/3.4.3/rx5vgow, py-matplotlib/3.4.3/yi6zmvu
+
+  py-mpi4py: py-mpi4py/3.0.3
+
+  py-mpi4py/3.1.2: py-mpi4py/3.1.2/cllp7nt, py-mpi4py/3.1.2/kas2whp, py-mpi4py/3.1.2/silsqln, ...
+
+  py-netcdf4: py-netcdf4/1.5.3-openblas
+
+  py-netcdf4/1.5.3: py-netcdf4/1.5.3/bvbhsk4, py-netcdf4/1.5.3/fzrdssl, py-netcdf4/1.5.3/hgun5lg, ...
+
+  py-numba/0.54.0: py-numba/0.54.0/qpdtmeb
+
+  py-numexpr: py-numexpr/2.7.0-openblas
+
+  py-numpy: py-numpy/1.19.2-openblas, py-numpy/1.19.2
+
+  py-numpy/1.20.3: py-numpy/1.20.3/awdtafk, py-numpy/1.20.3/4o6jrav
+
+  py-openpyxl: py-openpyxl/3.0.3
+
+  py-pandas: py-pandas/1.1.2
+
+  py-pandas/1.3.4: py-pandas/1.3.4/cdn7ah3, py-pandas/1.3.4/xzzqb4t
+
+  py-petsc4py/3.16.1: py-petsc4py/3.16.1/gxzt2bj, py-petsc4py/3.16.1/vb4pl2j, py-petsc4py/3.16.1/vn2wr5q, ...
+
+  py-phonopy: py-phonopy/1.10.0-openblas
+
+  py-pillow-simd: py-pillow-simd/7.0.0.post3
+
+  py-pip: py-pip/20.2
+
+  py-pip/21.1.2: py-pip/21.1.2/c6jrr5x, py-pip/21.1.2/mddhf7t
+
+  py-pybind11: py-pybind11/2.5.0
+
+  py-pycuda/2020.1: py-pycuda/2020.1/gxy44zn
+
+  py-pyparsing: py-pyparsing/2.4.2
+
+  py-pysam: py-pysam/0.15.2-openblas
+
+  py-pyscf: py-pyscf/1.7.3-openblas
+
+  py-pyscf/1.7.5: py-pyscf/1.7.5/mkyqyfp
+
+  py-pyscf/2.2.0: py-pyscf/2.2.0/7cmdavf
+
+  py-python-dateutil: py-python-dateutil/2.8.0
+
+  py-pytz: py-pytz/2019.3
+
+  py-pyyaml: py-pyyaml/5.3.1
+
+  py-scikit-learn/1.0.1: py-scikit-learn/1.0.1/ec2ajge-omp, py-scikit-learn/1.0.1/eziaxuh-omp
+
+  py-scikit-optimize/0.5.2: py-scikit-optimize/0.5.2/pnkwe7q, py-scikit-optimize/0.5.2/vche4jf
+
+  py-scipy: py-scipy/1.5.2-openblas, py-scipy/1.5.2
+
+  py-scipy/1.5.4: py-scipy/1.5.4/kbp2eyv, py-scipy/1.5.4/u7skc52
+
+  py-seaborn/0.11.2: py-seaborn/0.11.2/inf4toq, py-seaborn/0.11.2/2ow3eva
+
+  py-setuptools: py-setuptools/50.1.0
+
+  py-setuptools-scm: py-setuptools-scm/4.1.2
+
+  py-setuptools/58.2.0: py-setuptools/58.2.0/eefp7mw, py-setuptools/58.2.0/xc4oaek
+
+  py-six: py-six/1.14.0
+
+  py-slepc4py/3.16.0: py-slepc4py/3.16.0/l4pxu6f, py-slepc4py/3.16.0/mtzqbo3, py-slepc4py/3.16.0/rwy2a7n, ...
+
+  py-statsmodels/0.12.2: py-statsmodels/0.12.2/idrw2sz, py-statsmodels/0.12.2/uyrves2
+
+  py-sympy/1.8: py-sympy/1.8/g2ihkby, py-sympy/1.8/3y3e3ac
+
+  py-tables: py-tables/3.6.1-openblas
+
+  py-virtualenv/16.7.6: py-virtualenv/16.7.6/4kzv6ad, py-virtualenv/16.7.6/7ptmkfm
+
+  py-xlrd: py-xlrd/1.2.0
+
+  python: python/3.8.5
+
+  python/3.8.12: python/3.8.12/uasyy5n, python/3.8.12/7zdjza7
+
+  qchem: qchem/5.3, qchem/5.4, qchem/6.0.2
+
+  qchem/6.0: qchem/6.0/rytxnwj
+
+  qhull/2020.2: qhull/2020.2/d7f45v7
+
+  qrupdate/1.1.2: qrupdate/1.1.2/h2h5pdu
+
+  qt: qt/5.15.2
+
+  quantum-espresso: quantum-espresso/6.4.1-openblas-environ, quantum-espresso/6.5-openblas, ...
+
+  quantum-espresso/7.0: quantum-espresso/7.0/zl3kj67
+
+  r: r/4.0.2-openblas
+
+  r-acepack: r-acepack/1.4.1-openblas
+
+  r-affy: r-affy/1.62.0-openblas
+
+  r-affyio: r-affyio/1.54.0-openblas
+
+  r-annotate: r-annotate/1.62.0-openblas
+
+  r-annotationdbi: r-annotationdbi/1.46.1-openblas
+
+  r-askpass: r-askpass/1.1-openblas
+
+  r-assertthat: r-assertthat/0.2.1-openblas
+
+  r-backports: r-backports/1.1.4-openblas
+
+  r-base64: r-base64/2.0-openblas
+
+  r-base64enc: r-base64enc/0.1-3-openblas
+
+  r-beanplot: r-beanplot/1.2-openblas
+
+  r-bh: r-bh/1.69.0-1-openblas
+
+  r-bibtex: r-bibtex/0.4.2-openblas
+
+  r-biobase: r-biobase/2.44.0-openblas
+
+  r-biocgenerics: r-biocgenerics/0.34.0-openblas
+
+  r-biocmanager: r-biocmanager/1.30.10-openblas
+
+  r-biocparallel: r-biocparallel/1.18.1-openblas
+
+  r-biomart: r-biomart/2.40.5-openblas
+
+  r-biostrings: r-biostrings/2.52.0-openblas
+
+  r-bit: r-bit/1.1-14-openblas
+
+  r-bit64: r-bit64/0.9-7-openblas
+
+  r-bitops: r-bitops/1.0-6-openblas
+
+  r-blob: r-blob/1.2.0-openblas
+
+  r-bumphunter: r-bumphunter/1.26.0-openblas
+
+  r-checkmate: r-checkmate/1.9.4-openblas
+
+  r-cli: r-cli/2.0.2-openblas
+
+  r-clipr: r-clipr/0.7.0-openblas
+
+  r-cluster: r-cluster/2.1.0-openblas
+
+  r-codetools: r-codetools/0.2-16-openblas
+
+  r-colorspace: r-colorspace/1.4-1-openblas
+
+  r-crayon: r-crayon/1.3.4-openblas
+
+  r-curl: r-curl/4.3-openblas
+
+  r-data-table: r-data-table/1.12.8-openblas
+
+  r-dbi: r-dbi/1.1.0-openblas
+
+  r-delayedarray: r-delayedarray/0.10.0-openblas
+
+  r-delayedmatrixstats: r-delayedmatrixstats/1.6.1-openblas
+
+  r-deseq2: r-deseq2/1.32.0-openblas
+
+  r-digest: r-digest/0.6.25-openblas
+
+  r-doparallel: r-doparallel/1.0.15-openblas
+
+  r-dorng: r-dorng/1.7.1-openblas
+
+  r-dplyr: r-dplyr/0.8.3-openblas
+
+  r-ellipsis: r-ellipsis/0.3.0-openblas
+
+  r-evaluate: r-evaluate/0.14-openblas
+
+  r-fansi: r-fansi/0.4.0-openblas
+
+  r-fdb-infiniummethylation-hg19: r-fdb-infiniummethylation-hg19/2.2.0-openblas
+
+  r-foreach: r-foreach/1.4.7-openblas
+
+  r-foreign: r-foreign/0.8-72-openblas
+
+  r-formatr: r-formatr/1.7-openblas
+
+  r-formula: r-formula/1.2-3-openblas
+
+  r-futile-logger: r-futile-logger/1.4.3-openblas
+
+  r-futile-options: r-futile-options/1.0.1-openblas
+
+  r-genefilter: r-genefilter/1.72.1-openblas
+
+  r-geneplotter: r-geneplotter/1.62.0-openblas
+
+  r-genomeinfodb: r-genomeinfodb/1.20.0-openblas
+
+  r-genomeinfodbdata: r-genomeinfodbdata/1.2.1-openblas
+
+  r-genomicalignments: r-genomicalignments/1.20.1-openblas
+
+  r-genomicfeatures: r-genomicfeatures/1.36.4-openblas
+
+  r-genomicranges: r-genomicranges/1.36.1-openblas
+
+  r-geoquery: r-geoquery/2.52.0-openblas
+
+  r-ggplot2: r-ggplot2/3.2.0-openblas
+
+  r-glue: r-glue/1.4.1-openblas
+
+  r-gridbase: r-gridbase/0.4-7-openblas
+
+  r-gridextra: r-gridextra/2.3-openblas
+
+  r-gtable: r-gtable/0.3.0-openblas
+
+  r-hdf5array: r-hdf5array/1.12.3-openblas
+
+  r-highr: r-highr/0.8-openblas
+
+  r-hmisc: r-hmisc/4.4-0-openblas
+
+  r-hms: r-hms/0.5.0-openblas
+
+  r-htmltable: r-htmltable/1.13.1-openblas
+
+  r-htmltools: r-htmltools/0.3.6-openblas
+
+  r-htmlwidgets: r-htmlwidgets/1.3-openblas
+
+  r-httpuv: r-httpuv/1.5.1-openblas
+
+  r-httr: r-httr/1.4.1-openblas
+
+  r-illuminaio: r-illuminaio/0.26.0-openblas
+
+  r-iranges: r-iranges/2.22.2-openblas
+
+  r-iterators: r-iterators/1.0.12-openblas
+
+  r-jpeg: r-jpeg/0.1-8.1-openblas
+
+  r-jsonlite: r-jsonlite/1.6.1-openblas
+
+  r-kernsmooth: r-kernsmooth/2.23-15-openblas
+
+  r-knitr: r-knitr/1.28-openblas
+
+  r-labeling: r-labeling/0.3-openblas
+
+  r-lambda-r: r-lambda-r/1.2.3-openblas
+
+  r-later: r-later/0.8.0-openblas
+
+  r-lattice: r-lattice/0.20-38-openblas
+
+  r-latticeextra: r-latticeextra/0.6-28-openblas
+
+  r-lazyeval: r-lazyeval/0.2.2-openblas
+
+  r-limma: r-limma/3.40.6-openblas
+
+  r-locfit: r-locfit/1.5-9.1-openblas
+
+  r-lumi: r-lumi/2.38.0-openblas
+
+  r-magrittr: r-magrittr/1.5-openblas
+
+  r-maptools: r-maptools/0.9-5-openblas
+
+  r-markdown: r-markdown/1.1-openblas
+
+  r-mass: r-mass/7.3-51.5-openblas
+
+  r-matrix: r-matrix/1.2-17-openblas
+
+  r-matrixstats: r-matrixstats/0.55.0-openblas
+
+  r-mclust: r-mclust/5.4.5-openblas
+
+  r-memoise: r-memoise/1.1.0-openblas
+
+  r-methylumi: r-methylumi/2.32.0-openblas
+
+  r-mgcv: r-mgcv/1.8-28-openblas
+
+  r-mime: r-mime/0.7-openblas
+
+  r-minfi: r-minfi/1.30.0-openblas
+
+  r-misc3d: r-misc3d/0.8-4-openblas
+
+  r-multtest: r-multtest/2.40.0-openblas
+
+  r-munsell: r-munsell/0.5.0-openblas
+
+  r-nleqslv: r-nleqslv/3.3.2-openblas
+
+  r-nlme: r-nlme/3.1-141-openblas
+
+  r-nmf: r-nmf/0.21.0-openblas
+
+  r-nnet: r-nnet/7.3-12-openblas
+
+  r-nor1mix: r-nor1mix/1.3-0-openblas
+
+  r-openssl: r-openssl/1.4.1-openblas
+
+  r-org-hs-eg-db: r-org-hs-eg-db/3.8.2-openblas
+
+  r-pillar: r-pillar/1.4.2-openblas
+
+  r-pkgconfig: r-pkgconfig/2.0.2-openblas
+
+  r-pkgmaker: r-pkgmaker/0.27-openblas
+
+  r-plogr: r-plogr/0.2.0-openblas
+
+  r-plyr: r-plyr/1.8.4-openblas
+
+  r-png: r-png/0.1-7-openblas
+
+  r-preprocesscore: r-preprocesscore/1.46.0-openblas
+
+  r-prettyunits: r-prettyunits/1.0.2-openblas
+
+  r-progress: r-progress/1.2.2-openblas
+
+  r-promises: r-promises/1.0.1-openblas
+
+  r-purrr: r-purrr/0.3.4-openblas
+
+  r-quadprog: r-quadprog/1.5-7-openblas
+
+  r-r6: r-r6/2.4.0-openblas
+
+  r-rcolorbrewer: r-rcolorbrewer/1.1-2-openblas
+
+  r-rcpp: r-rcpp/1.0.4.6-openblas
+
+  r-rcpparmadillo: r-rcpparmadillo/0.9.600.4.0-openblas
+
+  r-rcurl: r-rcurl/1.98-1.2-openblas
+
+  r-readr: r-readr/1.3.1-openblas
+
+  r-registry: r-registry/0.5-1-openblas
+
+  r-reshape: r-reshape/0.8.8-openblas
+
+  r-reshape2: r-reshape2/1.4.3-openblas
+
+  r-rhdf5: r-rhdf5/2.28.1-openblas
+
+  r-rhdf5lib: r-rhdf5lib/1.6.3-openblas
+
+  r-rhtslib: r-rhtslib/1.18.1-openblas
+
+  r-rlang: r-rlang/0.4.6-openblas
+
+  r-rngtools: r-rngtools/1.4-openblas
+
+  r-rpart: r-rpart/4.1-15-openblas
+
+  r-rsamtools: r-rsamtools/2.2.1-openblas
+
+  r-rsqlite: r-rsqlite/2.1.2-openblas
+
+  r-rstudioapi: r-rstudioapi/0.11-openblas
+
+  r-rtracklayer: r-rtracklayer/1.44.4-openblas
+
+  r-s4vectors: r-s4vectors/0.26.1-openblas
+
+  r-scales: r-scales/1.0.0-openblas
+
+  r-scrime: r-scrime/1.3.5-openblas
+
+  r-shiny: r-shiny/1.3.2-openblas
+
+  r-siggenes: r-siggenes/1.58.0-openblas
+
+  r-snow: r-snow/0.4-3-openblas
+
+  r-sourcetools: r-sourcetools/0.1.7-openblas
+
+  r-sp: r-sp/1.3-1-openblas
+
+  r-stringi: r-stringi/1.4.3-openblas
+
+  r-stringr: r-stringr/1.4.0-openblas
+
+  r-summarizedexperiment: r-summarizedexperiment/1.18.2-openblas
+
+  r-survival: r-survival/3.1-12-openblas
+
+  r-sys: r-sys/3.2-openblas
+
+  r-tibble: r-tibble/2.1.3-openblas
+
+  r-tidyr: r-tidyr/0.8.3-openblas
+
+  r-tidyselect: r-tidyselect/0.2.5-openblas
+
+  r-txdb-hsapiens-ucsc-hg19-knowngene: r-txdb-hsapiens-ucsc-hg19-knowngene/3.2.2-openblas
+
+  r-utf8: r-utf8/1.1.4-openblas
+
+  r-vctrs: r-vctrs/0.2.0-openblas
+
+  r-viridis: r-viridis/0.5.1-openblas
+
+  r-viridislite: r-viridislite/0.3.0-openblas
+
+  r-withr: r-withr/2.2.0-openblas
+
+  r-xfun: r-xfun/0.8-openblas
+
+  r-xml: r-xml/3.98-1.20-openblas
+
+  r-xml2: r-xml2/1.3.2-openblas
+
+  r-xtable: r-xtable/1.8-4-openblas
+
+  r-xvector: r-xvector/0.24.0-openblas
+
+  r-yaml: r-yaml/2.2.0-openblas
+
+  r-zeallot: r-zeallot/0.1.0-openblas
+
+  r-zlibbioc: r-zlibbioc/1.30.0-openblas
+
+  r/4.1.1: r/4.1.1/x5at72y
+
+  randfold: randfold/2.0.1
+
+  raxml: raxml/8.2.11, raxml/8.2.12
+
+  raxml-ng: raxml-ng/1.0.1
+
+  raxml-ng/1.0.2: raxml-ng/1.0.2/x6syxpi
+
+  raxml/8.2.12: raxml/8.2.12/pfjuuas
+
+  rclone: rclone/1.56.0
+
+  rclone/1.56.2: rclone/1.56.2/gud2qb5, rclone/1.56.2/mldjorr
+
+  readline: readline/8.0
+
+  relion: relion/3.0.8, relion/3.1.1
+
+  relion/3.1.4: relion/3.1.4/5y2df5y, relion/3.1.4/575x5jy
+
+  relion/4.0.0: relion/4.0.0/lm35hes, relion/4.0.0/ruhnkxi
+
+  rstudio: rstudio/1.4.1103
+    rstudio 
+
+  salmon: salmon/0.14.1
+
+  salmon/1.4.0: salmon/1.4.0/vf4i7ra
+
+  samblaster: samblaster/0.1.24
+
+  samtools: samtools/1.10
+
+  samtools/1.13: samtools/1.13/2cnwok7
+
+  scotch/6.1.1: scotch/6.1.1/fekh6xf, scotch/6.1.1/lkjq2h6, scotch/6.1.1/xhriqso
+
+  sdsc: sdsc/1.0
+    Adds SDSC site/system specific tools to your environment.
+
+  shared: shared
+
+  siesta: siesta/4.0.2-openblas
+
+  siesta/4.0.2: siesta/4.0.2/a5jdqly
+
+  singularitypro: singularitypro/3.9
+
+  slepc/3.16.0: slepc/3.16.0/ctca32t-cmplx, slepc/3.16.0/jipvkmf, slepc/3.16.0/lwqkefv, slepc/3.16.0/ob5kcnx, ...
+
+  slurm: slurm/expanse/21.08.8
+
+  slurm/expanse: slurm/expanse/current, slurm/expanse/21.08.8
+
+  soapdenovo2: soapdenovo2/240
+
+  spades: spades/3.15.2
+
+  spades/3.15.3: spades/3.15.3/x4n57dc
+
+  spark: spark/2.4.8, spark/3.2.1
+
+  spark/3.4.0: spark/3.4.0/sntnkcq
+
+  sprng: sprng/5.0
+
+  sprng/5.0: sprng/5.0/u2op57v, sprng/5.0/zydwds7, sprng/5.0/2ano3s3, sprng/5.0/2omv34a, sprng/5.0/5xw33em
+
+  sqlite/3.36.0: sqlite/3.36.0/fxmvvsx, sqlite/3.36.0/uqy7ybg
+
+  sratoolkit: sratoolkit/2.10.9
+
+  sratoolkit/2.10.9: sratoolkit/2.10.9/rn4humf, sratoolkit/2.10.9/uv6bewx
+
+  stacks: stacks/2.3b
+
+  star: star/2.7.9a
+
+  star/2.7.10a: star/2.7.10a/qc5or7l
+
+  stringtie: stringtie/1.3.4d
+
+  stringtie/1.3.4d: stringtie/1.3.4d/ja7rx6c
+
+  subversion: subversion/1.14.0
+
+  subversion/1.14.0: subversion/1.14.0/hrxrs2j, subversion/1.14.0/qpzq6zs
+
+  suite-sparse/5.10.1: suite-sparse/5.10.1/fypa67y, suite-sparse/5.10.1/ik7q4iq, suite-sparse/5.10.1/jyf2p6z, ...
+
+  superlu-dist/7.1.1: superlu-dist/7.1.1/c3g2myi, superlu-dist/7.1.1/cqpf74m, superlu-dist/7.1.1/fdtvzyb, ...
+
+  superlu/5.3.0: superlu/5.3.0/bhobnmr, superlu/5.3.0/ot4sttd, superlu/5.3.0/tycq2th, superlu/5.3.0/yjmfxgc, ...
+
+  tabix: tabix/2013-12-16
+
+  tau: tau/2.29
+
+  tau/2.30.2: tau/2.30.2/auogdal, tau/2.30.2/s54anrs, tau/2.30.2/5froehk, tau/2.30.2/5ryxq3x, tau/2.30.2/6q2lafr
+
+  tcl: tcl/8.6.10
+
+  tcl/8.5.9: tcl/8.5.9/nce4krr, tcl/8.5.9/6xpusrk
+
+  tcl/8.6.11: tcl/8.6.11/e3gh7it, tcl/8.6.11/kysl7po
+
+  trimmomatic: trimmomatic/0.38
+
+  trimmomatic/0.39: trimmomatic/0.39/gcr46gz
+
+  trinity: trinity/2.6.6
+
+  ucx: ucx/1.8.1, ucx/1.10.1
+
+  ucx/1.10.1: ucx/1.10.1/dn4rrrk, ucx/1.10.1/dnpjjuc, ucx/1.10.1/msro2p7, ucx/1.10.1/ogidxnu, ucx/1.10.1/wla3unl
+
+  valgrind: valgrind/3.15.0
+
+  valgrind/3.17.0: valgrind/3.17.0/aejew5q, valgrind/3.17.0/afwnccb, valgrind/3.17.0/alxbf5p, ...
+
+  vasp: vasp/5.4.4-openblas-wannier90, vasp/5.4.4-openblas-wannier90-3.1, vasp/5.4.4-openblas, vasp/5.4.4-vaspsol, ...
+
+  vasp6/6.2.1: vasp6/6.2.1/tqvsz4d, vasp6/6.2.1/ysnddtb
+
+  vcftools: vcftools/0.1.14
+
+  vmd: vmd/1.9.3
+
+  vmd/1.9.3: vmd/1.9.3/dv3ueqt
+
+  wannier90: wannier90/1.2-openblas, wannier90/3.1.0-openblas
+
+  wannier90/3.1.0: wannier90/3.1.0/4b3fvlj
+
+  wps/4.2: wps/4.2/t4pczgv
+
+  wrf/4.2: wrf/4.2/rsznbfe, wrf/4.2/5hf6hqj
+
+  xz: xz/5.2.5
+
+  zlib: zlib/1.2.11
+
+  zstd: zstd/1.4.5
+
+------------------------------------------------------------------------------------------------------------------
+
+To learn more about a package execute:
+
+   $ module spider Foo
+
+where "Foo" is the name of a module.
+
+To find detailed information about a particular package you
+must specify the version if there is more than one version:
+
+   $ module spider Foo/11.1
+
+------------------------------------------------------------------------------------------------------------------
+
+ 
+

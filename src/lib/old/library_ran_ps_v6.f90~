@@ -1,0 +1,134 @@
+module rand_seed_mod
+  implicit none; save
+  integer, parameter :: nLseed=4,ndiffseeds=6
+  integer            :: Line_seed
+  !integer(kind=8)    :: mB=3726189298
+  integer(kind=8)    :: seed_array(nlseed, ndiffseeds)
+  integer(kind=8)    :: seed_read( nlseed, ndiffseeds)
+  integer            :: rank_dependent(    ndiffseeds)  = 0
+  logical            :: first = .true. 
+  integer            :: mdiffseeds
+  integer(kind=8)    :: j1, j2, j3, j4, j5
+contains
+  subroutine read_initiate_seeds
+    use mpi_lib_ours, only : rank,nodes
+    implicit none
+    integer iseed,i
+
+    if(.not.first) return
+
+    first = .false.
+    
+    if(rank==0) then
+       write(6,*) 
+       write(6,*)' Now give me in fort.4 between 1 and ',ndiffseeds,' lines with 5 integers each: '
+       write(6,*)'  first 4 (integer*8) are seeds; the last 1 or not, depending on whether to assign '
+       write(6,*)'  a rank-dependent seed or not '
+       write(6,*)
+    end if
+    
+    rewind(4);      
+    write(6,*)' stagea: ndiffseeds ',ndiffseeds
+    do iseed=1,ndiffseeds
+       read(4,*,end=99)seed_read(:, iseed)!,rank_dependent(iseed)
+       if(rank==min(3,nodes-1)) &
+            write(6,*)' iseed ',iseed,' seed_read ',seed_read(:,iseed),&
+                                      ' rank_dependent ',rank_dependent(iseed)
+    end do
+99  continue
+
+    mdiffseeds = iseed-1
+    call check_lele(1,mdiffseeds,ndiffseeds,' 1 mdiffseeds ndiffseeds ')
+
+    do iseed=1,mdiffseeds
+       if(rank_dependent(iseed)==1) then
+          do i=1,nLseed 
+             j1 = i
+             j2 = 921778613
+             j3 = rank
+             j4 = iseed
+             j5 = 6938938
+             seed_array(i,iseed) = &
+                  seed_read(i,iseed) + j1* j2* j3 + j4 * j5       
+                  !int8(i)*int8(921778613) *int8(rank) + int8(iseed)* int8(6938938)
+          enddo
+       else
+          j1 = iseed
+          j2 = 693
+          seed_array(:,iseed) = seed_read(:,iseed)+ j1*j2 !  int8(iseed)*int8(693)
+       end if
+    end do
+
+    line_seed = 1
+    ! initia line, unless otherwise denoted, is 1
+    call ran_ps_putseed(seed_array(:,line_seed))
+    !write(6,*)' rank, seed_array(:,line_seed) ',rank,seed_array(:,line_seed)
+
+  end subroutine read_initiate_seeds
+
+
+end module rand_seed_mod
+
+function ran_ps()
+  use mod_kiss,      only : kiss_uniform
+  use mpi_lib_ours,  only : rank
+  use rand_seed_mod, only : first,line_seed, mdiffseeds, seed_array, read_initiate_seeds
+  implicit none
+  integer, save :: cnt=0
+  real*8   r
+  real*8   ran_ps
+  
+  cnt=cnt+1
+  if(cnt>1000)cnt=1000
+
+  if(first) then
+     call read_initiate_seeds
+     first=.false. 
+  end if
+  
+  call check_lele(1,line_seed, mdiffseeds,' 1 line_seed, mdiffseeds ')
+
+!  if(cnt<3) then
+!     write(6,*)'  pre: rank, cnt , line, seed pre ',rank,cnt,line_seed,seed_array(:,line_seed)
+!  end if
+
+  call ran_ps_putseed(seed_array(:,line_seed))
+  call kiss_uniform(r)
+  ran_ps = r
+  call ran_ps_getseed(seed_array(:,line_seed))
+  
+!  if(cnt<3) then
+!     write(6,*)' post: rank, cnt , line, seed pre ',rank,cnt,line_seed,seed_array(:,line_seed)
+!  end if
+
+end function ran_ps
+
+subroutine ran_ps_getseed(seed)
+  use mod_kiss, only : kiss_seed_extract_DN
+  use rand_seed_mod, only : nlseed
+  implicit none
+  integer(kind=8) seed(nLseed)
+  call check(nlseed, 4     ,' nseed, four   ')
+  call kiss_seed_extract_DN(seed(1),seed(2),seed(3),seed(4))
+end subroutine ran_ps_getseed
+
+subroutine ran_ps_putseed(seed)
+  use mod_kiss, only : kiss_seed
+  use rand_seed_mod, only : nlseed
+  implicit none
+  integer(kind=8) seed(nlseed)
+  call check(nlseed, 4     ,' nlseed, four   ')
+  call kiss_seed(seed(1), seed(2), seed(3), seed(4))
+end subroutine ran_ps_putseed
+
+subroutine ran_ps_putseed_intoarray(seed, line)  ! sets line-seed to line, sets seed_array(:,line) too seed
+  use mod_kiss, only : kiss_seed_extract_DN
+  use rand_seed_mod, only : nlseed,line_seed,seed_array, mdiffseeds
+  implicit none
+  integer line
+  integer(kind=8) seed(nLseed)
+  call check(nlseed, 4     ,' nseed, four   ')
+  call check_lele(1,line,mdiffseeds,' 1 line mdifseds ')
+  line_seed=line
+  seed_array(:,line)=seed
+end subroutine ran_ps_putseed_intoarray

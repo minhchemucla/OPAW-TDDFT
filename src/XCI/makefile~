@@ -1,0 +1,22 @@
+FCMPI 	    = mpif90
+FC	        = gfortran
+MPIFLG      = -g -ffpe-trap=invalid -fcheck=all -Wall -DMPI  #-O3
+FFTFLG 	    = -lfftw3
+FFTFLOATFLG = -lfftw3f
+LIBXC       = -I/home/vlcek/Dev/LIBXC/libxc-3.0.1/LIBXC/include -L/home/vlcek/Dev/LIBXC/libxc-3.0.1/LIBXC/lib -lxcf90 -lxc
+
+# compile
+all: libdft dft
+
+link: 
+
+dft: 
+	$(FCMPI) $(MPIFLG)  -o dft.x  -I./lib ./lib/*.o *f90  $(FFTFLG) $(FFTFLOATFLG) $(LIBXC)
+
+libdft:
+	cd lib &&	$(FCMPI) $(MPIFLG) -c *.f90 *.f  && cd ..
+clean:
+	rm -rf *o *mod  lib/*o lib/*mod
+
+cleanx:
+	rm -rf *o *mod  lib/*o lib/*mod *.x 

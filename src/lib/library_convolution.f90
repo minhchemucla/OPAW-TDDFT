@@ -1,0 +1,116 @@
+!program dummy_drv_convolution
+!  call prepare_mpi
+!  call drv_convolution
+!end program dummy_drv_convolution
+
+! 
+! subroutine convolution_dot
+!
+!  Given sign, n, A(-N+1:N-1,1:La),B(-N+1:N-1,1:Lb),F(-2*N+2:2*N-2), calculates 
+!  S(1:La,1:Lb) = sum_(i,j in [-N+1:N-1] ) A(i,1:La) B(j,1:Lb) F(i+sign*j)
+!  All real*8 (except N...)
+
+! methodology:
+! s=sum a(i) b(j) f(i+sg*j)
+! define
+! g(i) = sum b(j) f(i+sg*j)
+! So s = sum a(i) g(i)
+! Do fft, gt(k) = sum_i g(i) e(i*k)     where e(i*k) == exp(-ci* i*k * 2pi/nn)
+! So
+! gt(k) = sum_ij b(j) f(i+sg*j) e(i*k) = sum_ij b(j) f(i+sg*j) e((i+sg*j)k) e(-sg*jk)  
+!                               for sg= 1:    = bt*(k) ft(k)
+!                               for sg=-1:    = bt(k) ft(k)
+! further s = 1/N a*(k) gt(k)
+! so  s= 1/n  a*(k) b*(k) ft(k) or a*(k) b(k) ft(k)
+
+subroutine convolution_dot(sgn,n,la,lb,a,b,f,s)
+  implicit none
+  integer sgn,n, ia, ib, la, lb, nn, mm, st, i
+  real*8 a(-n+1:n-1,la), b(-n+1:n-1,lb), f(-2*n+2:2*n-2), s(la,lb)
+  complex*16, allocatable :: ac(:,:), bc(:,:), fc(:), sc(:,:)
+  if(abs(sgn)/=1) stop ' sgn needs to be +-1 '
+  mm = 2 + ceiling(log(dble(n))/log(2d0))
+  nn = 2**mm
+  call check_le(n*4,nn,'n*4, nn')
+  allocate(ac(0:nn-1,la), bc(0:nn-1,lb), fc(0:nn-1), sc(la,lb), stat=st)
+  call check0(st,' acbc ')
+
+  ac = 0d0
+  bc = 0d0
+  fc = 0d0
+
+  ac(0:n-1,:) = a(0:n-1,:)
+  bc(0:n-1,:) = b(0:n-1,:)
+  fc(0:2*n-2) = f(0:2*n-2)
+
+  ac(nn  -n+1 :nn-1,:) = a(  -n+1 :-1,:)
+  bc(nn  -n+1 :nn-1,:) = b(  -n+1 :-1,:)
+  fc(nn-2*n+2 :nn-1)   = f(-2*n+2 :-1)
+
+  call fftsa_lot(nn,ac,mm,la)
+  call fftsa_lot(nn,bc,mm,lb)
+  call     fftsa(nn,fc,mm)
+
+  do ia=1,la
+     do ib=1,lb
+        select case(sgn)
+        case(1)
+           sc(ia,ib)= sum(conjg(ac(:,ia))*conjg(bc(:,ib))*fc(:)) / nn
+        case(-1)
+           sc(ia,ib)= sum(conjg(ac(:,ia))*      bc(:,ib) *fc(:)) / nn
+        case default
+           stop ' sgn '
+        end select
+     end do
+  end do
+  call check_real(sc, size(sc))
+  s = sc
+  deallocate(ac,bc,fc,sc)
+end subroutine convolution_dot
+
+subroutine drv_convolution
+  implicit none
+  integer, parameter :: n=10, la=3,lb=2
+  integer i, j, ia, ib
+  real*8, external :: ran_ps_neg
+  real*8 a(  -n+1:n-1,  la)
+  real*8 b(  -n+1:n-1,  lb)
+  real*8 f(-2*n+2:2*n-2 )
+  real*8 sp(la, lb), xp
+  real*8 sn(la, lb), xn
+
+  do i=-n+1,n-1
+     do ia=1,la; a(i,ia)=ran_ps_neg()
+     enddo
+     do ib=1,lb; b(i,ib)=ran_ps_neg()
+     enddo
+  enddo
+
+  do i=-2*n+2,2*n-2
+     f(i)=ran_ps_neg()
+  enddo
+
+  call convolution_dot( 1,n,la,lb,a,b,f,sp)
+  call convolution_dot(-1,n,la,lb,a,b,f,sn)
+
+  xp = 0d0
+  xn = 0d0
+
+  do ia=1,la
+     do ib=1,lb
+
+        xp = 0d0
+        xn = 0d0
+        do i= -n+1, n-1
+           do j= -n+1, n-1
+              xp = xp + a(i,ia)*b(j,ib)*f(i+j)
+              xn = xn + a(i,ia)*b(j,ib)*f(i-j)
+           enddo
+        enddo
+
+        write(6,*)ia,ib,real(sp(ia,ib)),real(xp),real(sn(ia,ib)),real(xn),' ia ib sp xp sn xn '
+        if(abs(xp-sp(ia,ib))>1d-9) stop ' xp problem '
+        if(abs(xn-sn(ia,ib))>1d-9) stop ' xn problem '
+     enddo
+  enddo
+end subroutine drv_convolution

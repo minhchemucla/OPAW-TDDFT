@@ -1,0 +1,62 @@
+subroutine lda_libxc(dens, n, nspin, vxc)
+  implicit none
+  integer             :: n, nspin 
+  integer, parameter  :: one=1, two=2
+  real*8              :: dens(n), vxc(n), va(n)
+
+  !dummy local variables
+  real*8  :: sigma(n), exc(n)
+
+  if(nspin/=1) stop "ONLY NON SPIN POLARIZED! IN LIBXC LDA"
+  sigma = 0.d0
+
+  call libxc_drive(n,dens,sigma,exc,va,one)
+
+  vxc = va
+
+  call libxc_drive(n,dens,sigma,exc,va,two)
+
+  vxc = vxc + va
+  
+end subroutine
+
+
+subroutine pbe_libxc(dens, n, nspin, vxc, exc)
+  use main,      only : nx, ny, nz, dx, dy, dz
+  use mpi_lib_ours, only : rank
+  use xch_modu,   only: gamma
+  implicit none
+  integer             :: n, nspin 
+  integer, parameter  :: three=3, four=4, five=5
+  real*8              :: dens(n), vxc(n), va(n), ex(n)
+
+  !dummy local variables
+  real*8  :: sigma(n), exc(n)
+
+  if(nspin/=1) stop "ONLY NON SPIN POLARIZED IN LIBXC LDA !"
+  if(nx*ny*nz/=n) stop "PROBLEM WITH THE GRID IN PBE_LIBXC!"
+
+
+  call grad(nx, dx, ny, dy, nz, dz, dens, sigma)
+
+  if(any(sigma/=sigma)) stop "NAN IN GRADS!"
+  where(sigma.lt.1E-10) sigma=0.d0
+  sigma = 0.25d0*sigma**2.d0
+
+  if(gamma==0) then
+    call libxc_drive(n,dens,sigma,ex,va,three)
+  else
+    call libxc_drive(n,dens,sigma,ex,va,five)
+  end if
+
+  vxc = va
+  exc = ex
+
+  vxc=0d0; exc=0d0 ! erase DN
+
+  call libxc_drive(n,dens,sigma,ex,va,four)
+
+  vxc = vxc + va
+  exc = exc + ex
+
+end subroutine
