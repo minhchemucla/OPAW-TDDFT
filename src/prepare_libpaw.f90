@@ -176,10 +176,10 @@ contains
             call getcut(boxcut,ecutpaw,gmet,gsqcut,0,74,kpt,ngfft,ek_factor)
             gsqcutdg=gsqcut
             ekcut=ecutpaw
-            if ((ekcut-ek_target)> 0.5e-7) then
+            if ((ekcut-ek_target)> 0.5e-3) then
               !ek_low = (ek_high+ek_low)/2d0
               ek_high = ek_factor
-            else if ((ekcut-ek_target) < 0.5e-7) then
+            else if ((ekcut-ek_target) < 0.5e-3) then
               !ek_high = (ek_high+ek_low)/2d0
               ek_low = ek_factor
             else 
