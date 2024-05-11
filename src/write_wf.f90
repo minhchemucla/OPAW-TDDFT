@@ -46,6 +46,8 @@ subroutine writewf
        write(1) 'dz      ',dz
        write(1) 'nsp     ',1
        write(1) 'nstates ',nb*nodes
+       write(1) 'orbmn_wf',1
+       write(1) 'ihomo   ',nocc
        write(1) 'evls    '
        write(1) eig
        write(1) 'orbitals'
@@ -91,6 +93,8 @@ subroutine writewf
        write(1,*) 'dz      ',dz
        write(1,*) 'nsp     ',1
        write(1,*) 'nstates ',nb*nodes
+       write(1,*) 'orbmn_wf',1
+       write(1,*) 'ihomo   ',nocc
        write(1,*) 'evls    ' 
        write(1,*) eig
        write(1,*) 'orbitals'
