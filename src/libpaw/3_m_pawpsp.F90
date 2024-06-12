@@ -2469,7 +2469,7 @@ subroutine pawpsp_calc(core_mesh,epsatm,ffspl,imainmesh,ixc,lnmax,&
    if (reduced_ncor) then
      call pawpsp_cg(pawtab%dncdq0,pawtab%d2ncdq0,mqgrid_vl,qgrid_vl,pawtab%tcorespl(:,1),rcore_mesh,rtncor,yp1,ypn)
    else
-       write(700,*) qgrid_vl 
+       !write(700,*) qgrid_vl 
    call pawpsp_cg(pawtab%dncdq0,pawtab%d2ncdq0,mqgrid_vl,qgrid_vl,pawtab%tcorespl(:,1),core_mesh,tncore,yp1,ypn)
    end if
 !  Compute second derivative of tcorespl(q)

@@ -236,44 +236,44 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
  real(dp),pointer :: v_dijhat(:,:)
  real(dp),pointer :: vpawu(:,:,:,:),vpawx(:,:,:)
 
- write(174,*) 'pawrhoij%rhoijp',pawrhoij(1)%rhoijp
- write(175,*) 'enunit',enunit
- write(175,*) 'ipert',ipert
- write(175,*) 'my_natom',my_natom
- write(175,*) 'natom',natom
- write(175,*) 'nfft',nfft
- write(175,*) 'nfftot',nfftot
- write(175,*) 'nspden',nspden
- write(175,*) 'ntypat',ntypat
- write(175,*) 'pawprtvol',pawprtvol
- write(175,*) 'pawspnorb',pawspnorb
- write(175,*) 'pawxcdev',pawxcdev
- write(175,*) 'spnorbscl',spnorbscl
- write(175,*) 'ucvol',ucvol
- write(175,*) 'charge',charge
- write(175,*) 'gprimd',gprimd
- write(175,*) 'qphon',qphon
-! write(176,*) 'vxc',vxc
- write(176,*) 'xred',xred
-! write(176,*) 'vtrial',vtrial
- write(178,*) 'paw_ij%hasdij',paw_ij(1)%has_dij
- write(178,*) 'paw_ij%hasdij0',paw_ij(1)%has_dij0
- write(178,*) 'paw_ij%hasdijexxc',paw_ij(1)%has_dijexxc
- write(178,*) 'paw_ij%hasdijhartree',paw_ij(1)%has_dijhartree
- write(178,*) 'paw_ij%hasdijhat',paw_ij(1)%has_dijhat
- write(178,*) 'paw_ij%hasdijxc',paw_ij(1)%has_dijxc
- write(178,*) 'paw_ij%hasdijxc_hat',paw_ij(1)%has_dijxc_hat
- write(178,*) 'paw_ij%hasdijxc_val',paw_ij(1)%has_dijxc_val
- write(178,*) 'paw_ij%dij',paw_ij(1)%dij
- write(178,*) 'paw_ij%dijhartree',paw_ij(1)%dijhartree
- write(178,*) 'paw_an%has_kxc',paw_an(1)%has_kxc
- write(178,*) 'paw_an%has_k3xc',paw_an(1)%has_k3xc
- write(178,*) 'paw_an%has_vhartree',paw_an(1)%has_vhartree
- write(178,*) 'paw_an%has_vxc',paw_an(1)%has_vxc
- write(178,*) 'paw_an%has_vxcval',paw_an(1)%has_vxcval
- write(178,*) 'paw_an%has_vxc_ex',paw_an(1)%has_vxc_ex
- write(178,*) 'paw_an%nkxc1',paw_an(1)%nkxc1
- write(178,*) 'paw_an%nk3xc1',paw_an(1)%nk3xc1
+! write(174,*) 'pawrhoij%rhoijp',pawrhoij(1)%rhoijp
+! write(175,*) 'enunit',enunit
+! write(175,*) 'ipert',ipert
+! write(175,*) 'my_natom',my_natom
+! write(175,*) 'natom',natom
+! write(175,*) 'nfft',nfft
+! write(175,*) 'nfftot',nfftot
+! write(175,*) 'nspden',nspden
+! write(175,*) 'ntypat',ntypat
+! write(175,*) 'pawprtvol',pawprtvol
+! write(175,*) 'pawspnorb',pawspnorb
+! write(175,*) 'pawxcdev',pawxcdev
+! write(175,*) 'spnorbscl',spnorbscl
+! write(175,*) 'ucvol',ucvol
+! write(175,*) 'charge',charge
+! write(175,*) 'gprimd',gprimd
+! write(175,*) 'qphon',qphon
+!! write(176,*) 'vxc',vxc
+! write(176,*) 'xred',xred
+!! write(176,*) 'vtrial',vtrial
+! write(178,*) 'paw_ij%hasdij',paw_ij(1)%has_dij
+! write(178,*) 'paw_ij%hasdij0',paw_ij(1)%has_dij0
+! write(178,*) 'paw_ij%hasdijexxc',paw_ij(1)%has_dijexxc
+! write(178,*) 'paw_ij%hasdijhartree',paw_ij(1)%has_dijhartree
+! write(178,*) 'paw_ij%hasdijhat',paw_ij(1)%has_dijhat
+! write(178,*) 'paw_ij%hasdijxc',paw_ij(1)%has_dijxc
+! write(178,*) 'paw_ij%hasdijxc_hat',paw_ij(1)%has_dijxc_hat
+! write(178,*) 'paw_ij%hasdijxc_val',paw_ij(1)%has_dijxc_val
+! write(178,*) 'paw_ij%dij',paw_ij(1)%dij
+! write(178,*) 'paw_ij%dijhartree',paw_ij(1)%dijhartree
+! write(178,*) 'paw_an%has_kxc',paw_an(1)%has_kxc
+! write(178,*) 'paw_an%has_k3xc',paw_an(1)%has_k3xc
+! write(178,*) 'paw_an%has_vhartree',paw_an(1)%has_vhartree
+! write(178,*) 'paw_an%has_vxc',paw_an(1)%has_vxc
+! write(178,*) 'paw_an%has_vxcval',paw_an(1)%has_vxcval
+! write(178,*) 'paw_an%has_vxc_ex',paw_an(1)%has_vxc_ex
+! write(178,*) 'paw_an%nkxc1',paw_an(1)%nkxc1
+! write(178,*) 'paw_an%nk3xc1',paw_an(1)%nk3xc1
 ! *************************************************************************
 
 !------------------------------------------------------------------------
@@ -485,7 +485,7 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
      paw_ij(iatom)%dij0=zero
    end if
 
-   write(2200+iatom,*) 'pawij%has_dijfock',paw_ij(iatom)%has_dijfock
+   !write(2200+iatom,*) 'pawij%has_dijfock',paw_ij(iatom)%has_dijfock
    if (dijfock_available) then
      if (paw_ij(iatom)%has_dijfock==1) then
        dijfock_need=.true.;paw_ij(iatom)%dijfock(:,:)=zero
@@ -511,7 +511,7 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
      paw_ij(iatom)%dijhartree=zero
    end if
 
-   write(2200+iatom,*) 'pawij%has_dijxc',paw_ij(iatom)%has_dijxc !minh added
+   !write(2200+iatom,*) 'pawij%has_dijxc',paw_ij(iatom)%has_dijxc !minh added
    if(.not.allocated(paw_ij(iatom)%dijxc)) LIBPAW_ALLOCATE(paw_ij(iatom)%dijxc,(cplex_rf*cplex_dij*lmn2_size,ndij))
     if (dijxc_available) then
      if (paw_ij(iatom)%has_dijxc==1) then
@@ -610,10 +610,10 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
    end if
 
 !  === Print error messages if prerequisites are not fulfilled ===
-   write(199,*) dij_need,dij0_need,dijexxc_need,dijfock_need,&
-   dijhartree_need,dijhat_need,dijhatfr_need,&
-   dijso_need,dijU_need,dijxc_need,dijxchat_need,&
-   dijxcval_need, dijnd_need
+   !write(199,*) dij_need,dij0_need,dijexxc_need,dijfock_need,&
+   !dijhartree_need,dijhat_need,dijhatfr_need,&
+   !dijso_need,dijU_need,dijxc_need,dijxchat_need,&
+   !dijxcval_need, dijnd_need
 
    dij_need=.true. !Wenfei added
    paw_ij(iatom)%dij=0d0
@@ -739,10 +739,10 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
 &                    paw_ij(iatom)%dij(1:cplex_dij*lmn2_size,:) &
 &                   +dijfock_vv(1:cplex_dij*lmn2_size,:)+dijfock_cv(1:cplex_dij*lmn2_size,:)
      
-       write(2400+iatom,*) 'dijfock'   
-       write(2500+iatom,*) 'dijfock'   
-       write(2400+iatom,*) paw_ij(iatom)%dijfock
-       write(2500+iatom,*) paw_ij(iatom)%dij
+!       write(2400+iatom,*) 'dijfock'   
+!       write(2500+iatom,*) 'dijfock'   
+!       write(2400+iatom,*) paw_ij(iatom)%dijfock
+!       write(2500+iatom,*) paw_ij(iatom)%dij
 
        LIBPAW_DEALLOCATE(dijfock_vv)
        LIBPAW_DEALLOCATE(dijfock_cv)
@@ -830,11 +830,11 @@ subroutine pawdij(cplex,enunit,gprimd,ipert,my_natom,natom,nfft,nfftot,nspden,nt
        paw_ij(iatom)%dijxc(:,:)=dijxc(:,:)
        if (dij_need) paw_ij(iatom)%dij(:,:)=paw_ij(iatom)%dij(:,:)+dijxc(:,:)
        
-       write(2400+iatom,*) 'dijxc'
-       write(2500+iatom,*) 'dijxc'
-       write(2400+iatom,*) dijxc
-       write(2400+iatom,*) paw_ij(iatom)%dijxc
-       write(2500+iatom,*) paw_ij(iatom)%dij
+!       write(2400+iatom,*) 'dijxc'
+!       write(2500+iatom,*) 'dijxc'
+!       write(2400+iatom,*) dijxc
+!       write(2400+iatom,*) paw_ij(iatom)%dijxc
+!       write(2500+iatom,*) paw_ij(iatom)%dij
        
        LIBPAW_DEALLOCATE(dijxc)
      end if

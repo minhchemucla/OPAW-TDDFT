@@ -60,17 +60,13 @@ subroutine plot_dip
     
     
     if(n_restart>0 .and. it==it_restart+1) then
-      write(*,*) 'debug 1'
       inquire(file='./d_dip_cont.dat',exist=restart_again)
       if(restart_again) then
-        write(*,*) 'debug 2'
         open(unit=15, file='d_dip_cont.dat',position='append',status='old',action='write')
         open(unit=16, file='dip_cont.dat',position='append',status='old',action='write')
       else
-        write(*,*) 'debug 3'
         inquire(file='./d_dip.dat',exist=first_restart)
         if(first_restart) then
-          write(*,*) 'debug 4'
           open(unit=18, file='d_dip.dat',status='old') 
           rewind(18)
           open(unit=19, file='dip.dat',status='old') 
@@ -86,7 +82,6 @@ subroutine plot_dip
             write(16,*) tmp, tmp3d
           enddo
         else
-          write(*,*) 'debug 5'
           open(unit=15, file='d_dip.dat')
           rewind(15)
           open(unit=16, file='dip.dat')
@@ -95,7 +90,6 @@ subroutine plot_dip
       endif
     else
       if(it==1) then
-        write(*,*) 'debug 6'
         open(unit=15, file='d_dip.dat') 
         rewind(15)
         open(unit=16, file='dip.dat') 

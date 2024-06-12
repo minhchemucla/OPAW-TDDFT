@@ -32,8 +32,10 @@ cleanlib :
           
 cleanlibpaw :
 	touch libpaw/a.o libpaw/a.mod
-	rm $(libpaw)/*.o $(libpaw)/*.mod
+	rm libpaw/*.o libpaw/*.mod
        
 clean :
 	touch empty.o empty.mod 
 	rm *.o *mod 
+
+cleanall : clean cleanlibpaw cleanlib

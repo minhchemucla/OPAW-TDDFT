@@ -103,7 +103,7 @@ subroutine initrhoij(cplex,lexexch,lpawu,my_natom,natom,&
 ! write(174,*) 'lexexch',lexexch
 ! write(174,*) 'lpawu',lpawu
 ! write(174,*) 'typat',typat
- write(174,*) 'spinat',spinat
+! write(174,*) 'spinat',spinat
 ! DBG_ENTER("COLL")
 !write(*,*) 'flag 2'
 
@@ -139,6 +139,8 @@ subroutine initrhoij(cplex,lexexch,lpawu,my_natom,natom,&
 !&     ngrhoij=ngrhoij0,nlmnmix=nlmnmix0,use_rhoij_=use_rhoij_0,use_rhoijres=use_rhoijres0,&
 !&     pawtab=pawtab,comm_atom=my_comm_atom,mpi_atmtab=my_atmtab)
 !   else
+     nlmnmix0=0  !MINH ADDED. If this isn't set to zero, nlmnmix0 can be a large random number
+     !causing a bunch of memory to be allocated unnecessarily.
      call pawrhoij_alloc(pawrhoij,cplex,nspden_rhoij,nspinor,nsppol,typat,pawtab=pawtab,&
 &     ngrhoij=ngrhoij0,nlmnmix=nlmnmix0,use_rhoij_=use_rhoij_0,use_rhoijres=use_rhoijres0)
 !   end if

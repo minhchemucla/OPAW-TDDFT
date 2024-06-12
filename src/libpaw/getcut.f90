@@ -118,6 +118,6 @@ subroutine getcut(boxcut,ecut,gmet,gsqcut,iboxcut,iout,kpt,ngfft,ek_factor)
 
  end if  ! iboxcut
 
- write(74,*) 'gsqcut',gsqcut
+ !write(74,*) 'gsqcut',gsqcut
 end subroutine getcut
 
